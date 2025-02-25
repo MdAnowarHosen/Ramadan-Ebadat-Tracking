@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-    <div class="max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-700">
+    <div class="max-w-4xl p-6 mx-auto rounded-lg shadow-lg bg-amber-50 dark:bg-gray-700">
         <!-- Header -->
         <div class="flex items-center justify-between pb-4 border-b">
             <img src="as-sunnah-logo.png" alt="As Sunnah Foundation" class="h-12" />
@@ -142,16 +142,16 @@
 
                 <div class="relative overflow-x-auto shadow-md mt-14 sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rtl:text-right">
-                        <thead class="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <thead class="text-xs text-center text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-2 py-3 text-lg font-bold">দিনের কাজ</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
+                        <tbody class="text-center ">
                             <tr
                                 class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                             >
-                                <td class="py-2 font-bold" style="line-height: 20px">
+                                <td class="py-2 font-medium bg-amber-100 dark:bg-gray-900" style="line-height: 20px">
                                     <p class="">সাফল্য অর্জনের জন্যে সূরা আল-মূমিনূনের প্রথম ১৫ টি আয়াত অর্থ সহ পড়ুন।</p>
                                 </td>
                             </tr>
@@ -161,7 +161,7 @@
 
                 <div class="relative mt-4 overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rtl:text-right">
-                        <thead class="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <thead class="text-xs text-center text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-2 py-3 text-lg font-bold">দিনের কাজ</th>
                             </tr>
@@ -170,7 +170,7 @@
                             <tr
                                 class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                             >
-                                <td class="py-2 font-bold" style="line-height: 20px">
+                                <td class="py-2 font-medium bg-amber-100 dark:bg-gray-900" style="line-height: 20px">
                                     <p class="">সাফল্য অর্জনের জন্যে সূরা আল-মূমিনূনের প্রথম ১৫ টি আয়াত অর্থ সহ পড়ুন।</p>
                                 </td>
                             </tr>
@@ -184,7 +184,7 @@
                 <div class="">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rtl:text-right">
-                            <thead class="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="text-xs text-center text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-2 py-3">সম্পন্ন</th>
                                     <th scope="col" class="px-2 py-3">বিষয়</th>
