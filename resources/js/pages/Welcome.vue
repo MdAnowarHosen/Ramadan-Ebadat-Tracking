@@ -192,7 +192,7 @@
                             </thead>
                             <tbody class="text-center">
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -203,7 +203,7 @@
                                     <td class="py-2 text-sm"><span>সকালের যিকর</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -214,7 +214,7 @@
                                     <td class="py-2 text-sm"><span>সন্ধ্যার যিকর</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -225,7 +225,7 @@
                                     <td class="py-2 text-sm"><span>দান-সাদাকা</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -236,7 +236,7 @@
                                     <td class="py-2 text-sm"><span>দিনের কাজ</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -247,7 +247,7 @@
                                     <td class="py-2 text-sm"><span>কমপক্ষ্যে ৭০ বার ইস্তেগফার</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -258,7 +258,7 @@
                                     <td class="py-2 text-sm"><span>কুরআন তিলাওয়াত ও তাদাব্বুর</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -269,7 +269,7 @@
                                     <td class="py-2 text-sm"><span>ঘুমের পূর্বের যিকর</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -280,7 +280,7 @@
                                     <td class="py-2 text-sm"><span>দিনের দু'আ মুখস্থ</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -291,7 +291,7 @@
                                     <td class="py-2 text-sm"><span>আল্লাহর নাম মুখস্থ</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -302,7 +302,7 @@
                                     <td class="py-2 text-sm"><span>জামাআতে সালাত আদায়</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
@@ -313,7 +313,7 @@
                                     <td class="py-2 text-sm"><span>নতুন কিছু শেখা</span></td>
                                 </tr>
                                 <tr
-                                    class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
                                         <input
