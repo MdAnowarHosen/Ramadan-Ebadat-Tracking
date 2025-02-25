@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-    <div class="max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-lg">
+    <div class="max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-700">
         <!-- Header -->
         <div class="flex items-center justify-between pb-4 border-b">
             <img src="as-sunnah-logo.png" alt="As Sunnah Foundation" class="h-12" />
@@ -118,7 +118,7 @@
             </div>
 
             <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
-                <h2 class="mb-3 text-sm font-bold text-gray-600">কুরআন ট্র্যাকার</h2>
+                <h2 class="mb-3 text-sm font-bold text-gray-600 dark:text-gray-400">কুরআন ট্র্যাকার</h2>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rtl:text-right">
                         <thead class="text-xs text-center text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
@@ -180,7 +180,7 @@
             </div>
 
             <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
-                <h2 class="mb-3 text-sm font-bold text-gray-600">দৈনিক চেকলিস্ট</h2>
+                <h2 class="mb-3 text-sm font-bold text-gray-600 dark:text-gray-400">দৈনিক চেকলিস্ট</h2>
                 <div class="">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rtl:text-right">
