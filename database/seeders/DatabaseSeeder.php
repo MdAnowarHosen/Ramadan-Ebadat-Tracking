@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\TaskSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\SalatSeeder;
+use Database\Seeders\TaskUserSeeder;
 use Database\Seeders\SalatUserSeeder;
 use Database\Seeders\QuranTrackSeeder;
 
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             SalatUserSeeder::class,
             QuranTrackSeeder::class,
             TaskSeeder::class,
+            TaskUserSeeder::class,
         ]);
     }
 }
