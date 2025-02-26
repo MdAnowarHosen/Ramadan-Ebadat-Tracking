@@ -22,11 +22,11 @@
                     class="flex flex-col p-4 mt-4 font-medium border rounded-lg border-amber-400 bg-amber-50 dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse"
                 >
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            href="/"
                             class="block px-3 py-2 text-gray-800 rounded-sm activeNavLink md:hover:text-amber-700 md:bg-transparent md:p-0 dark:text-gray-400 md:dark:bg-transparent md:dark:hover:text-gray-300"
                             aria-current="page"
-                            >হোম</a
+                            >হোম</Link
                         >
                     </li>
                     <!-- <li>
@@ -71,14 +71,14 @@
                             >আমাদের সম্পর্কে</Link
                         >
                     </li>
-                    <li>
+                    <li v-if="!auth.user">
                         <Link
                             href="/login"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
                             >লগিন</Link
                         >
                     </li>
-                    <li>
+                    <li v-if="!auth.user">
                         <Link
                             href="/register"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
@@ -93,4 +93,6 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+const auth = usePage().props.auth;
 </script>
