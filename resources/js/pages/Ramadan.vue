@@ -62,7 +62,7 @@
                                         class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 dark:text-blue-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                     />
                                 </td>
-                                <td class="py-8"><input type="number" min="0" class="w-10 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600 " /></td>
+                                <td class="py-8"><input type="number" min="0" class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600 " /></td>
                             </tr>
                             <tr
                                 class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
@@ -74,7 +74,7 @@
                                         class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 dark:text-blue-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                     />
                                 </td>
-                                <td class="py-8"><input type="number" min="0" class="w-10 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600" /></td>
+                                <td class="py-8"><input type="number" min="0" class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600" /></td>
                             </tr>
                             <tr
                                 class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
@@ -86,7 +86,7 @@
                                         class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 dark:text-blue-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                     />
                                 </td>
-                                <td class="py-8"><input type="number" min="0" class="w-10 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600" /></td>
+                                <td class="py-8"><input type="number" min="0" class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600" /></td>
                             </tr>
                             <tr
                                 class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
@@ -98,7 +98,7 @@
                                         class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 dark:text-blue-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                     />
                                 </td>
-                                <td class="py-8"><input type="number" min="0" class="w-10 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600" /></td>
+                                <td class="py-8"><input type="number" min="0" class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600" /></td>
                             </tr>
                             <tr
                                 class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
@@ -110,7 +110,7 @@
                                         class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:8ocus:ring-blue-600"
                                     />
                                 </td>
-                                <td class="py-8"><input type="number" min="0" class="w-10 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600" /></td>
+                                <td class="py-5"><input type="number" min="0" class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600" /></td>
                             </tr>
                         </tbody>
                     </table>
