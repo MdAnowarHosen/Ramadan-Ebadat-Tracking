@@ -182,6 +182,8 @@
                                 >
                                     <td class="py-2">
                                         <input
+                                            :checked="task.id % 2 !== 0"
+                                            @click="doAction(task.id)"
                                             class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
                                             type="checkbox"
                                         />
@@ -202,9 +204,16 @@
 <script lang="ts" setup>
 // Give page title name
 import { Head } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
     salats: Object,
     tasks: Object,
 });
+
+
+function doAction(id: number) {
+    router.post(`/track/task/update/${id}`);
+}
+
 </script>
