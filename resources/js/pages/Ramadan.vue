@@ -59,9 +59,11 @@
                         </thead>
                         <tbody class="text-center">
                             <tr
+                                v-for="salat in salats"
+                                :key="salat.id"
                                 class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                             >
-                                <td class="py-8">ফজর</td>
+                                <td class="py-8">{{ salat.name }}</td>
                                 <td class="py-8">
                                     <input
                                         type="checkbox"
@@ -69,78 +71,6 @@
                                     />
                                 </td>
                                 <td class="py-8">
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600"
-                                    />
-                                </td>
-                            </tr>
-                            <tr
-                                class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                            >
-                                <td class="py-8">যোহর</td>
-                                <td class="py-8">
-                                    <input
-                                        type="checkbox"
-                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                                    />
-                                </td>
-                                <td class="py-8">
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600"
-                                    />
-                                </td>
-                            </tr>
-                            <tr
-                                class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                            >
-                                <td class="py-8">আসর</td>
-                                <td class="py-8">
-                                    <input
-                                        type="checkbox"
-                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                                    />
-                                </td>
-                                <td class="py-8">
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600"
-                                    />
-                                </td>
-                            </tr>
-                            <tr
-                                class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                            >
-                                <td class="py-8">মাগরিব</td>
-                                <td class="py-8">
-                                    <input
-                                        type="checkbox"
-                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                                    />
-                                </td>
-                                <td class="py-8">
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600"
-                                    />
-                                </td>
-                            </tr>
-                            <tr
-                                class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                            >
-                                <td class="py-8">ইশা</td>
-                                <td class="py-8">
-                                    <input
-                                        type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                    />
-                                </td>
-                                <td class="py-5">
                                     <input
                                         type="number"
                                         min="0"
@@ -246,6 +176,8 @@
                             </thead>
                             <tbody class="text-center">
                                 <tr
+                                    v-for="task in tasks"
+                                    :key="task.id"
                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
@@ -254,128 +186,9 @@
                                             type="checkbox"
                                         />
                                     </td>
-                                    <td class="py-2 text-sm"><span>সকালের যিকর</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
+                                    <td class="py-2 text-sm">
+                                        <span>{{ task.name }}</span>
                                     </td>
-                                    <td class="py-2 text-sm"><span>সন্ধ্যার যিকর</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>দান-সাদাকা</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>দিনের কাজ</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>কমপক্ষ্যে ৭০ বার ইস্তেগফার</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>কুরআন তিলাওয়াত ও তাদাব্বুর</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>ঘুমের পূর্বের যিকর</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>দিনের দু'আ মুখস্থ</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>আল্লাহর নাম মুখস্থ</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>জামাআতে সালাত আদায়</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>নতুন কিছু শেখা</span></td>
-                                </tr>
-                                <tr
-                                    class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                                >
-                                    <td class="py-2">
-                                        <input
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                            type="checkbox"
-                                        />
-                                    </td>
-                                    <td class="py-2 text-sm"><span>দিনের হাদীস</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -389,4 +202,9 @@
 <script lang="ts" setup>
 // Give page title name
 import { Head } from '@inertiajs/vue3';
+
+const props = defineProps({
+    salats: Object,
+    tasks: Object,
+});
 </script>
