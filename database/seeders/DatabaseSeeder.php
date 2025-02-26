@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\SalatSeeder;
 use Database\Seeders\SalatUserSeeder;
+use Database\Seeders\QuranTrackSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SalatSeeder::class,
             SalatUserSeeder::class,
+            QuranTrackSeeder::class,
         ]);
     }
 }

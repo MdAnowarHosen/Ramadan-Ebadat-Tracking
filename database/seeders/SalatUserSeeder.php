@@ -15,7 +15,7 @@ class SalatUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::take(30)->get();
+        $users = User::inRandomOrder()->take(30)->get();
         $salats = Salat::all();
 
         foreach ($users as $user) {
