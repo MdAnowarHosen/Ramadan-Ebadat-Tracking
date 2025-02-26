@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum EnumGender
+enum EnumGender: string
 {
     case MALE = 'male';
     case FEMALE = 'female';
@@ -10,9 +10,8 @@ enum EnumGender
     public function label(): string
     {
         return match ($this) {
-            self::MALE => 'male',
-            self::FEMALE => 'female',
+            self::MALE => 'Male',
+            self::FEMALE => 'Female',
         };
     }
-
 }
