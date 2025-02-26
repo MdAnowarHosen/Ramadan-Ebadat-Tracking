@@ -3,7 +3,7 @@
 
 if (!function_exists("successResponse"))
 {
-    function successResponse($message)
+    function successResponse(string $message)
     {
         return response()->json([
             'success' => true,
@@ -15,7 +15,7 @@ if (!function_exists("successResponse"))
 
 if (!function_exists("successResponseWithData"))
 {
-    function successResponseWithData($message, $data)
+    function successResponseWithData(string $message, object $data)
     {
         return response()->json([
             'success' => true,
@@ -28,7 +28,7 @@ if (!function_exists("successResponseWithData"))
 
 if (!function_exists("errorResponse"))
 {
-    function errorResponse($message, $responseCode = null)
+    function errorResponse(string $message, int $responseCode = null)
     {
         return response()->json([
             'success' => false,
