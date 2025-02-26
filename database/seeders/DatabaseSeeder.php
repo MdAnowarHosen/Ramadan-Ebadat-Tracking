@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\TaskSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\SalatSeeder;
 use Database\Seeders\SalatUserSeeder;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             SalatSeeder::class,
             SalatUserSeeder::class,
             QuranTrackSeeder::class,
+            TaskSeeder::class,
         ]);
     }
 }
