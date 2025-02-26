@@ -33,6 +33,6 @@ if (!function_exists("errorResponse"))
         return response()->json([
             'success' => false,
             'message' => $message,
-        ], $responseCode ?? 200);
+        ], $responseCode ?? 400);
     }
 }
