@@ -229,7 +229,7 @@ function getDateData(){
 }
 
 function doAction(id: number) {
-    router.post(`/track/task/update/${id}`, {}, {
+    router.post(`/track/task/update/${id}`, { date: date.value }, {
         preserveScroll: true,
         // onSuccess: () => {
         //     console.log('Task updated successfully!');

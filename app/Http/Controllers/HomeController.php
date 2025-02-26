@@ -26,15 +26,19 @@ class HomeController extends Controller
         }
 
         // Fetch all tasks
-        $tasks = Task::withExists(['users as is_user_assigned' => function ($query) {
-            $query->where('user_id', Auth::id());
-        }])
-            ->get();
+        // $tasks = Task::withExists(['users as is_user_assigned' => function ($query) use ($date) {
+        //     $query->where('user_id', Auth::id());
+        //     // I need where pivot table created_at is equal to $date
+        // }])
+        //     ->get();
+        // return $tasks;
 
-        // Determine `owned` based on the selected date
-        $tasks->each(function ($task) use ($date) {
-            $task->owned = $task->is_user_assigned && $task->created_at->format('Y-m-d') === $date;
-        });
+        $tasks = Task::withExists(['users as owned' => function ($query) use ($date) {
+            $query->where('user_id', Auth::id())
+                  ->whereDate('task_user.created_at', $date); // Ensure you reference the pivot table's `created_at`
+        }])->get();
+
+        // return $tasks;
 
 
         return inertia('Ramadan', [
