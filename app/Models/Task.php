@@ -20,7 +20,7 @@ class Task extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'task_users')
+        return $this->belongsToMany(User::class, 'task_user')
             ->withTimestamps();
     }
 }
