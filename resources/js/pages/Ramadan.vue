@@ -51,7 +51,7 @@
                         <thead class="text-xs text-center text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-2 py-5">ওয়াক্ত</th>
-                                <th scope="col" class="px-2 py-5">ফজর</th>
+                                <th scope="col" class="px-2 py-5">ফরজ</th>
                                 <th scope="col" class="px-2 py-5">সুন্নত</th>
                             </tr>
                         </thead>
