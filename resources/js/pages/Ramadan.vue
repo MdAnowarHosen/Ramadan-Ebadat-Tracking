@@ -5,37 +5,37 @@
         <!-- Header -->
         <div class="flex items-center justify-between pb-4 border-b">
             <img src="as-sunnah-logo.png" alt="As Sunnah Foundation" class="h-12" />
-            <div class="px-4 py-2 text-white bg-red-500 rounded">১ রমাদান</div>
+            <div class="px-4 py-2 font-medium text-gray-600 rounded bg-amber-400 dark:bg-gray-800 dark:text-gray-400">১ রমাদান</div>
             <img src="ramadan-logo.png" alt="Ramadan Planner" class="h-12" />
         </div>
 
         <!-- Content Section -->
         <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
             <!-- Ayat of the Day -->
-            <div class="p-4 bg-green-100 rounded-lg">
-                <h2 class="text-lg font-bold">দিনের আয়াত</h2>
-                <p class="mt-2 text-right text-gray-700">
+            <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
+                <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের আয়াত</h2>
+                <p class="mt-2 text-right text-gray-600 dark:text-gray-400">
                     وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ <br />
                     (الذاريات: ৫৬)
                 </p>
-                <p class="mt-2 text-gray-600">আমার ইবাদত করা ছাড়া আমি মানব ও জিন জাতি সৃষ্টি করিনি।</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-400">আমার ইবাদত করা ছাড়া আমি মানব ও জিন জাতি সৃষ্টি করিনি।</p>
             </div>
 
             <!-- Hadith of the Day -->
-            <div class="p-4 bg-green-100 rounded-lg">
-                <h2 class="text-lg font-bold">দিনের হাদিস</h2>
-                <p class="mt-2 text-gray-700">
+            <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
+                <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের হাদিস</h2>
+                <p class="mt-2 text-gray-600 dark:text-gray-400">
                     যে ব্যক্তি ঈমানের সাথে পূর্বেকার গুনাহের জন্য রমাদানের রোজা রাখবে, তার পূর্বেকার সমস্ত গুনাহ মাফ করে দেয়া হবে।
                 </p>
-                <p class="text-gray-600">(সহিহ বুখারি, হাদিস: ৩৮)</p>
+                <p class="text-gray-600 dark:text-gray-400">(সহিহ বুখারি, হাদিস: ৩৮)</p>
             </div>
         </div>
 
         <!-- Du'a Section -->
-        <div class="p-4 mt-4 bg-red-100 rounded-lg">
-            <h2 class="text-lg font-bold text-center">দিনের দোয়া</h2>
-            <p class="mt-2 text-center text-gray-700">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</p>
-            <p class="text-center text-gray-600">(সূরা বাকারা: ২০১)</p>
+        <div class="p-4 mt-4 rounded-lg bg-amber-100 dark:bg-gray-800">
+            <h2 class="text-lg font-bold text-center text-gray-600 dark:text-gray-400">দিনের দোয়া</h2>
+            <p class="mt-2 text-center text-gray-600 dark:text-gray-400">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</p>
+            <p class="text-center text-gray-600 dark:text-gray-400">(সূরা বাকারা: ২০১)</p>
         </div>
 
         <!-- Checklist & Tasks -->
