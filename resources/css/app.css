@@ -88,4 +88,8 @@ html {
     body {
         @apply bg-background text-foreground;
     }
+
+    .activeNavLink {
+        @apply  text-amber-800 dark:text-gray-300 font-semibold !important;
+    }
 }

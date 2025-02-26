@@ -4,9 +4,13 @@
     <div class="max-w-4xl p-6 mx-auto rounded-lg shadow-lg bg-amber-50 dark:bg-gray-700">
         <!-- Header -->
         <div class="flex items-center justify-between pb-4 border-b">
-            <img src="as-sunnah-logo.png" alt="As Sunnah Foundation" class="h-12" />
+           <div>
+            <!-- <p>১ রমাদান ১৪৪০</p> -->
+           </div>
             <div class="px-4 py-2 font-medium text-gray-600 rounded bg-amber-400 dark:bg-gray-800 dark:text-gray-400">১ রমাদান</div>
-            <img src="ramadan-logo.png" alt="Ramadan Planner" class="h-12" />
+            <div>
+                <!-- <p>১ ভাদ্র ১৪৪০</p> -->
+            </div>
         </div>
 
         <!-- Content Section -->
@@ -331,3 +335,9 @@
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+
+
+
+</script>
