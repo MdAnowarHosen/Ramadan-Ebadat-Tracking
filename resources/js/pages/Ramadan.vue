@@ -9,7 +9,7 @@
             </div>
             <div class="px-4 py-2 font-medium text-gray-600 rounded bg-amber-400 dark:bg-gray-800 dark:text-gray-400">১ রমাদান</div>
             <div>
-                <!-- <p>১ ভাদ্র ১৪৪০</p> -->
+                <input v-model="date" @change="getDateData()"  type="date"  />
             </div>
         </div>
 
@@ -205,12 +205,28 @@
 // Give page title name
 import { Head } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
+import { ref, computed  } from 'vue';
+import moment from 'moment';
 
 const props = defineProps({
     salats: Object,
     tasks: Object,
+    date: String,
 });
 
+const date = ref(props.date);
+
+
+function getDateData(){
+    router.get('/', { date: date.value }, {
+        preserveScroll: true,
+        onError: (errors) => {
+            console.error('Error updating task:', errors);
+            alert('Failed');
+            // Handle validation or other errors
+        }
+    });
+}
 
 function doAction(id: number) {
     router.post(`/track/task/update/${id}`, {}, {
@@ -226,6 +242,4 @@ function doAction(id: number) {
         }
     });
 }
-
-
 </script>

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Task extends Model
 {
     protected $fillable = ['name', 'status'];
-    protected $appends = ['owned'];
+    // protected $appends = ['owned'];
 
     protected function casts(): array
     {
@@ -26,9 +26,9 @@ class Task extends Model
             ->withTimestamps();
     }
 
-    public function getOwnedAttribute()
-    {
-        return Auth::check() ? $this->users()->where('user_id', Auth::id())->exists() : false;
-    }
+    // public function getOwnedAttribute()
+    // {
+    //     return Auth::check() ? $this->users()->where('user_id', Auth::id())->where('created_at', $date)->exists() : false;
+    // }
 
 }
