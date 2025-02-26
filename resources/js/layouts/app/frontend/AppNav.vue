@@ -1,10 +1,10 @@
 <template>
     <nav class="mb-5 border-gray-200 bg-amber-50 dark:border-gray-700 dark:bg-gray-900">
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-400">Flowbite</span>
-            </a>
+            <Link href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/logo.png" class="h-8" alt="Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-400">Ramadan</span>
+            </Link>
             <button
                 data-collapse-toggle="navbar-dropdown"
                 type="button"
@@ -26,10 +26,10 @@
                             href="#"
                             class="block px-3 py-2 text-gray-800 rounded-sm activeNavLink md:hover:text-amber-700 md:bg-transparent md:p-0 dark:text-gray-400 md:dark:bg-transparent md:dark:hover:text-gray-300"
                             aria-current="page"
-                            >Home</a
+                            >হোম</a
                         >
                     </li>
-                    <li>
+                    <!-- <li>
                         <button
                             id="dropdownNavbarLink"
                             data-dropdown-toggle="dropdownNavbar"
@@ -40,7 +40,6 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
                         </button>
-                        <!-- Dropdown menu -->
                         <div
                             id="dropdownNavbar"
                             class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:divide-gray-600 dark:bg-gray-700"
@@ -64,26 +63,26 @@
                                 >
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            href="/about"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
-                            >Services</a
+                            >আমাদের সম্পর্কে</Link
                         >
                     </li>
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            href="/login"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
-                            >Pricing</a
+                            >লগিন</Link
                         >
                     </li>
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            href="/register"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
-                            >Contact</a
+                            >রেজিস্টার</Link
                         >
                     </li>
                 </ul>
@@ -91,3 +90,7 @@
         </div>
     </nav>
 </template>
+
+<script setup>
+import { Link } from '@inertiajs/vue3';
+</script>
