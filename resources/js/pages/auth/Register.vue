@@ -11,6 +11,8 @@ import { LoaderCircle } from 'lucide-vue-next';
 const form = useForm({
     name: '',
     email: '',
+    age: '',
+    gender: '',
     password: '',
     password_confirmation: '',
 });
@@ -29,19 +31,41 @@ const submit = () => {
         <form @submit.prevent="submit" class="flex flex-col gap-6">
             <div class="grid gap-6">
                 <div class="grid gap-2">
-                    <Label for="name">Name</Label>
+                    <Label for="name">নাম</Label>
                     <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name" v-model="form.name" placeholder="Full name" />
                     <InputError :message="form.errors.name" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
+                    <Label for="email">ইমেইল</Label>
                     <Input id="email" type="email" required :tabindex="2" autocomplete="email" v-model="form.email" placeholder="email@example.com" />
                     <InputError :message="form.errors.email" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password">Password</Label>
+                    <Label for="gender">আমি একজন</Label>
+                    <select
+                        required
+                        :tabindex="2"
+                        autocomplete="gender"
+                        v-model="form.gender"
+                        id="gender"
+                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-gray-900 focus:ring-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-500 dark:focus:ring-gray-500"
+                    >
+                        <option value="male">পুরুষ</option>
+                        <option value="female">মহিলা</option>
+                    </select>
+                    <InputError :message="form.errors.gender" />
+                </div>
+
+                <div class="grid gap-2">
+                    <Label for="age">বয়স</Label>
+                    <Input id="age" type="number" required :tabindex="2" autocomplete="age" v-model="form.age" placeholder="আপনার বয়স" />
+                    <InputError :message="form.errors.age" />
+                </div>
+
+                <div class="grid gap-2">
+                    <Label for="password">পাসওয়ার্ড</Label>
                     <Input
                         id="password"
                         type="password"
@@ -68,13 +92,13 @@ const submit = () => {
                     <InputError :message="form.errors.password_confirmation" />
                 </div>
 
-                <Button type="submit" class="mt-2 w-full" tabindex="5" :disabled="form.processing">
-                    <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
+                <Button type="submit" class="w-full mt-2" tabindex="5" :disabled="form.processing">
+                    <LoaderCircle v-if="form.processing" class="w-4 h-4 animate-spin" />
                     Create account
                 </Button>
             </div>
 
-            <div class="text-center text-sm text-muted-foreground">
+            <div class="text-sm text-center text-muted-foreground">
                 Already have an account?
                 <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">Log in</TextLink>
             </div>
