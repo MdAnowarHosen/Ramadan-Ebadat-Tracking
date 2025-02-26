@@ -73,7 +73,7 @@ class TrackController extends Controller
 
         // Check if the task is already assigned for the specific date
         $existingPivot = $user->tasks($date)->wherePivot('task_id', $task->id)->first();
-
+        // dd($existingPivot);
         if (!$existingPivot) {
             // If not assigned, attach the task to the user for the given date
             $user->tasks($date)->attach($task->id, ['created_at' => Carbon::parse($date), 'updated_at' => Carbon::parse($date)]);

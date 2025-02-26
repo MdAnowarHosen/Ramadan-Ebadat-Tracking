@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\Salat;
 use App\Enums\EnumGender;
 use App\Models\QuranTrack;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -68,10 +69,12 @@ class User extends Authenticatable
         return $this->hasMany(QuranTrack::class);
     }
 
-    public function tasks(): BelongsToMany
+    public function tasks($date = null): BelongsToMany
     {
+        // If no date is passed, use the current date
+        $date = $date ?: Carbon::now()->format('Y-m-d');
         return $this->belongsToMany(Task::class, 'task_user')
-            ->withTimestamps();
-            // ->wherePivot('created_at', $date);
+            ->withTimestamps()
+            ->wherePivot('created_at', $date);
     }
 }
