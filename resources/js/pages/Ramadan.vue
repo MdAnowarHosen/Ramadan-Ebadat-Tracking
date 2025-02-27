@@ -69,6 +69,7 @@
                                 <td class="py-8">{{ salat.name }}</td>
                                 <td class="py-8">
                                     <input
+                                            @click="salatAction(salat.id)"
                                         type="checkbox"
                                         class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                     />
@@ -250,4 +251,24 @@ function doAction(id: number) {
         },
     );
 }
+
+function salatAction(id: number) {
+    router.post(
+        `/track/salat/update/${id}`,
+        { date: date.value },
+        {
+            preserveScroll: true,
+            // onSuccess: () => {
+            //     console.log('Task updated successfully!');
+            //     // Perform any success actions, such as showing a success message
+            // },
+            onError: (errors) => {
+                console.error('Error updating task:', errors);
+                alert('Failed');
+                // Handle validation or other errors
+            },
+        },
+    );
+}
+
 </script>

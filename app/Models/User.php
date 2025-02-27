@@ -57,11 +57,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function salats(): BelongsToMany
+    public function salats($date = null): BelongsToMany
     {
+        // If no date is passed, use the current date
+        $date = $date ?: Carbon::now()->format('Y-m-d');
+
         return $this->belongsToMany(Salat::class, 'salat_user')
             ->withPivot('sunnah_rakat')
-            ->withTimestamps();
+            ->withTimestamps()
+            ->wherePivot('created_at', $date);
     }
 
     public function quran_tracks(): HasMany
@@ -73,6 +77,7 @@ class User extends Authenticatable
     {
         // If no date is passed, use the current date
         $date = $date ?: Carbon::now()->format('Y-m-d');
+
         return $this->belongsToMany(Task::class, 'task_user')
             ->withTimestamps()
             ->wherePivot('created_at', $date);
