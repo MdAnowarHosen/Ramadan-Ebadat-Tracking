@@ -22,7 +22,7 @@ class DateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => 'nullable|date_format:Y-m-d',
+            'date' => 'required|date_format:Y-m-d',
         ];
     }
 }

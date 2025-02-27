@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\QuranTrack;
 use App\Models\Task;
 use App\Models\Salat;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class HomeController extends Controller
 
         $tasks = Task::withExists(['users as owned' => function ($query) use ($date) {
             $query->where('user_id', Auth::id())
-                  ->whereDate('task_user.created_at', $date); // Ensure you reference the pivot table's `created_at`
+                ->whereDate('task_user.created_at', $date); // Ensure you reference the pivot table's `created_at`
         }])->get();
 
         // return $tasks;
@@ -41,8 +42,8 @@ class HomeController extends Controller
 
         $salats = Salat::with(['users' => function ($query) use ($date) {
             $query->where('user_id', Auth::id())
-                  ->whereDate('salat_user.created_at', $date)
-                  ->select('users.id', 'salat_user.sunnah_rakat', 'salat_user.created_at', 'salat_user.updated_at');
+                ->whereDate('salat_user.created_at', $date)
+                ->select('users.id', 'salat_user.sunnah_rakat', 'salat_user.created_at', 'salat_user.updated_at');
         }])->get()->map(function ($salat) {
             $userPivot = $salat->users->first()?->pivot;
 
@@ -62,11 +63,20 @@ class HomeController extends Controller
         // return $salats;
 
 
+        $quran_data = QuranTrack::where('user_id', Auth::id())
+            ->whereDate('created_at', $date)
+            ->select(array_diff((new QuranTrack)->getFillable(), ['created_at', 'updated_at']))
+            ->first();
 
         return inertia('Ramadan', [
-            'salats' => $salats,
-            'tasks' => $tasks,
             'date' => $date,
+            'salats' => $salats,
+            'quran_data' => $quran_data ?? [
+                'ayat' => 0,
+                'page' => 0,
+                'para' => 0,
+            ],
+            'tasks' => $tasks,
         ]);
     }
 }

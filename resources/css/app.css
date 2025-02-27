@@ -92,4 +92,8 @@ html {
     .activeNavLink {
         @apply  text-amber-800 dark:text-gray-300 font-semibold !important;
     }
+
+    .w-18{
+        width: 4.5rem;
+    }
 }

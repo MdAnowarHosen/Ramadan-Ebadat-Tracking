@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SalatRequest extends FormRequest
+class QuranRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,9 @@ class SalatRequest extends FormRequest
     {
         return [
             'date' => 'required|date_format:Y-m-d',
-            'sunnah_rakat' => 'required|integer|min:0|max:23',
+            'ayat'=> 'nullable|integer|min:0|max:6236',
+            'page' => 'nullable|numeric|min:0|max:604',
+            'para' => 'nullable|numeric|min:0|max:30',
         ];
     }
 }

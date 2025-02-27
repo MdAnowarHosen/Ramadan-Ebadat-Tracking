@@ -4,7 +4,7 @@
     <div class="max-w-4xl p-6 mx-auto rounded-lg shadow-lg bg-amber-50 dark:bg-gray-700">
         <!-- Header -->
         <div class="flex items-center justify-between pb-4 border-b">
-            <div class="w-full px-4 py-2 mr-3 font-medium text-gray-600 rounded bg-amber-200 dark:bg-gray-800 dark:text-gray-400">১ রমাদান</div>
+            <div class="w-full px-4 py-2 mr-3 font-medium text-gray-600 rounded bg-amber-200 dark:bg-gray-800 dark:text-gray-400">{{ bengaliHijriDate }}</div>
             <div>
                 <input
                     v-model="date"
@@ -15,7 +15,6 @@
                 />
             </div>
         </div>
-
         <!-- Content Section -->
         <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
             <!-- Ayat of the Day -->
@@ -107,23 +106,29 @@
                             >
                                 <td class="py-8">
                                     <input
+                                        v-model.lazy="quran.ayat"
+                                        @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="w-10 h-8 bg-white border border-gray-300 rounded text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
+                                        class="h-8 bg-white border border-gray-300 rounded w-18 text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                                 <td class="py-8">
                                     <input
+                                        v-model.lazy="quran.page"
+                                        @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="w-10 h-8 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600"
+                                        class="h-8 bg-white border border-gray-300 rounded w-18 text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                                 <td class="py-8">
                                     <input
+                                        v-model.lazy="quran.para"
+                                        @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="w-10 h-8 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600"
+                                        class="h-8 bg-white border border-gray-300 rounded w-18 text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                             </tr>
@@ -213,14 +218,17 @@
 import { Head, router } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
 import { ref } from 'vue';
+import moment from 'moment-hijri';
 
 const props = defineProps({
-    salats: Object,
-    tasks: Object,
     date: String,
+    salats: Object,
+    quran_data: Object,
+    tasks: Object,
 });
 
 const date = ref(props.date);
+const quran = ref(props.quran_data);
 
 function getDateData() {
     router.get(
@@ -292,6 +300,24 @@ function sunnahAction(id: number, sunnah_rakat: number) {
     );
 }
 
+function quranAction() {
+    router.post(
+        '/track/quran/update',
+        { ayat: quran.value.ayat, page: quran.value.page, para: quran.value.para, date: date.value, },
+        {
+            preserveScroll: true,
+            // onSuccess: () => {
+            //     console.log('Task updated successfully!');
+            //     // Perform any success actions, such as showing a success message
+            // },
+            onError: (errors) => {
+                console.error('Error updating task:', errors);
+                showError(errors);
+            },
+        },
+    );
+}
+
 function showError(errors) {
     Swal.fire({
         title: 'Error!',
@@ -299,4 +325,41 @@ function showError(errors) {
         icon: 'error',
     });
 }
+
+
+// Date Calender
+// =========================================================================
+
+// Set the locale to Bengali (bn)
+moment.locale('en');
+
+// Convert numbers to Bengali
+const convertToBengaliNumber = (num) => num.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]);
+
+// Define Bengali month names mapping
+const bengaliMonths = {
+  "Muharram": "মহররম",
+  "Safar": "সফর",
+  "Rabi'": "রবিউল আউয়াল",
+  "Jumada": "রবিউস সানি",
+  "Jumada al-awwal": "জুমাদাল উলা",
+  "Jumada al-thani": "জুমাদাস সানি",
+  "Rajab": "রজব",
+  "Sha’ban": "শাবান",
+  "Ramadhan": "রমজান",
+  "Shawwal": "শাওয়াল",
+  "Thul-Qi’dah": "জিলকদ",
+  "Thul-Hijjah": "জিলহজ"
+};
+
+// Convert Gregorian date to Hijri and format it
+const dateA = moment(date.value, 'YYYY-MM-DD');
+const formattedDate = dateA.format('iD iMMMM iYYYY');
+console.log(formattedDate);
+// Extract day, month, and year from formatted Hijri date
+let [day, month, year] = formattedDate.split(' ');
+
+// Convert the Hijri date to Bengali
+let bengaliHijriDate = `${convertToBengaliNumber(day)} ${bengaliMonths[month] || month} ${convertToBengaliNumber(year)}`;
+// let bengaliHijriDate = `${convertToBengaliNumber(day)} ${bengaliMonths[month] || month}`;
 </script>

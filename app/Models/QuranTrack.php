@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuranTrack extends Model
 {
-    protected $fillable = ['user_id', 'ayat', 'page', 'para'];
+
+    protected $fillable = ['user_id', 'ayat', 'page', 'para', 'created_at'];
 
     protected function casts(): array
     {
