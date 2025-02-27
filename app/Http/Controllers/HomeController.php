@@ -71,7 +71,11 @@ class HomeController extends Controller
         return inertia('Ramadan', [
             'date' => $date,
             'salats' => $salats,
-            'quran_data' => $quran_data,
+            'quran_data' => $quran_data ?? [
+                'ayat' => 0,
+                'page' => 0,
+                'para' => 0,
+            ],
             'tasks' => $tasks,
         ]);
     }

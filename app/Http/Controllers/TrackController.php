@@ -118,6 +118,7 @@ class TrackController extends Controller
 
         unset($data['date']);
 
+
         if ($find) {
             unset($data['user_id']);
             unset($data['created_at']);
