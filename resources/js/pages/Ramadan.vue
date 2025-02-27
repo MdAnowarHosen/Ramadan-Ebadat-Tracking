@@ -211,6 +211,7 @@
 <script lang="ts" setup>
 // Give page title name
 import { Head, router } from '@inertiajs/vue3';
+import Swal from 'sweetalert2';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -229,8 +230,7 @@ function getDateData() {
             preserveScroll: true,
             onError: (errors) => {
                 console.error('Error updating task:', errors);
-                alert('Failed');
-                // Handle validation or other errors
+                showError(errors);
             },
         },
     );
@@ -248,8 +248,7 @@ function doAction(id: number) {
             // },
             onError: (errors) => {
                 console.error('Error updating task:', errors);
-                alert('Failed');
-                // Handle validation or other errors
+                showError(errors);
             },
         },
     );
@@ -267,8 +266,8 @@ function salatAction(id: number) {
             // },
             onError: (errors) => {
                 console.error('Error updating task:', errors);
-                alert('Failed');
-                // Handle validation or other errors
+                showError(errors);
+                // refetch salat data
             },
         },
     );
@@ -287,10 +286,17 @@ function sunnahAction(id: number, sunnah_rakat: number) {
             // },
             onError: (errors) => {
                 console.error('Error updating task:', errors);
-                alert('Failed');
-                // Handle validation or other errors
+                showError(errors);
             },
         },
     );
+}
+
+function showError(errors) {
+    Swal.fire({
+        title: 'Error!',
+        text: errors ? (Array.isArray(errors) ? errors[0] : Object.values(errors).join(', ')) : 'An error occurred',
+        icon: 'error',
+    });
 }
 </script>
