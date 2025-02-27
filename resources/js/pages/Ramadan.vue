@@ -338,28 +338,34 @@ const convertToBengaliNumber = (num) => num.replace(/\d/g, d => "০১২৩৪
 
 // Define Bengali month names mapping
 const bengaliMonths = {
-  "Muharram": "মহররম",
+  "Muharram": "মুহররম",
   "Safar": "সফর",
-  "Rabi'": "রবিউল আউয়াল",
-  "Jumada": "রবিউস সানি",
-  "Jumada al-awwal": "জুমাদাল উলা",
-  "Jumada al-thani": "জুমাদাস সানি",
+  "Rabi' al-Awwal": "রবিউল আউয়াল",
+  "Rabi' al-Thani": "রবিউস সানি",
+  "Jumada al-Ula": "জমাদিউল আউয়াল",
+  "Jumada al-Alkhirah": "জমাদিউস সানি",
   "Rajab": "রজব",
-  "Sha’ban": "শাবান",
+  "Sha’ban": "শা'বান",
   "Ramadhan": "রমজান",
   "Shawwal": "শাওয়াল",
-  "Thul-Qi’dah": "জিলকদ",
-  "Thul-Hijjah": "জিলহজ"
+  "Thul-Qi’dah": "জ্বিলকদ",
+  "Thul-Hijjah": "জ্বিলহজ্জ"
 };
 
 // Convert Gregorian date to Hijri and format it
 const dateA = moment(date.value, 'YYYY-MM-DD');
-const formattedDate = dateA.format('iD iMMMM iYYYY');
-console.log(formattedDate);
+const formattedDate = dateA.format('iD,iMMMM,iYYYY');
+// console.log('formated date is: ', formattedDate);
+// console.log('Month Name is: ', bengaliMonths["Rabi' al-Thani"]);
 // Extract day, month, and year from formatted Hijri date
-let [day, month, year] = formattedDate.split(' ');
-
+let [day, month, year] = formattedDate.split(',');
+// console.log('month is: ', month);
 // Convert the Hijri date to Bengali
 let bengaliHijriDate = `${convertToBengaliNumber(day)} ${bengaliMonths[month] || month} ${convertToBengaliNumber(year)}`;
 // let bengaliHijriDate = `${convertToBengaliNumber(day)} ${bengaliMonths[month] || month}`;
+
+
+
+
+
 </script>
