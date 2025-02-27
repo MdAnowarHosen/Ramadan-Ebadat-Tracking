@@ -77,6 +77,8 @@
                                 </td>
                                 <td class="py-8">
                                     <input
+                                        v-model="salat.sunnah_rakat"
+                                        @change="sunnahAction(salat.id, salat.sunnah_rakat)"
                                         type="number"
                                         min="0"
                                         class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600"
@@ -257,6 +259,26 @@ function salatAction(id: number) {
     router.post(
         `/track/salat/update/${id}`,
         { date: date.value },
+        {
+            preserveScroll: true,
+            // onSuccess: () => {
+            //     console.log('Task updated successfully!');
+            //     // Perform any success actions, such as showing a success message
+            // },
+            onError: (errors) => {
+                console.error('Error updating task:', errors);
+                alert('Failed');
+                // Handle validation or other errors
+            },
+        },
+    );
+}
+
+function sunnahAction(id: number, sunnah_rakat: number) {
+    // alert(sunnah_rakat);
+    router.post(
+        `/track/salat/sunnah_rakat/update/${id}`,
+        { date: date.value, sunnah_rakat: sunnah_rakat },
         {
             preserveScroll: true,
             // onSuccess: () => {

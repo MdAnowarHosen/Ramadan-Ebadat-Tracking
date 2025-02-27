@@ -80,4 +80,44 @@ class TrackController extends Controller
             throw $th;
         }
     }
+
+
+    public function updateSunnahSalat(Request $request, Salat $salat)
+    {
+        // Get the date from the request or default to the current date
+        $date = $request->date ?? now()->format('Y-m-d');
+
+        // Validate date format
+        $validatedDate = Carbon::createFromFormat('Y-m-d', $date);
+        if (!$validatedDate) {
+            // If the date is invalid, fall back to today's date
+            $date = now()->format('Y-m-d');
+        }
+
+        $sunnah_rakat = $request->sunnah_rakat;
+
+        // Toggle salat on the pivot table (attach the salat if it's not yet assigned for that date)
+        $user = auth()->user();
+
+        DB::beginTransaction();
+        try {
+            // Check if the salat is already assigned for the specific date
+            $existingPivot = $user->salats($date)->wherePivot('salat_id', $salat->id)->first();
+
+            // if pivot exists then update that with sunnah_rakat
+            // else if not exists then attach
+            if ($existingPivot) {
+                // update pivot with sunnah_rakat
+                $user->salats($date)->updateExistingPivot($salat->id, ['sunnah_rakat' => $sunnah_rakat]);
+            } else {
+                // $user->salats($date)->detach($salat->id);
+                $user->salats($date)->attach($salat->id, ['sunnah_rakat' => $sunnah_rakat, 'created_at' => Carbon::parse($date), 'updated_at' => Carbon::parse($date)]);
+            }
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+    }
 }
