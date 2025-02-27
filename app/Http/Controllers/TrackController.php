@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DateRequest;
+use App\Http\Requests\SalatRequest;
 use App\Models\Task;
 use App\Models\Salat;
 use Illuminate\Http\Request;
@@ -12,7 +14,7 @@ class TrackController extends Controller
 {
 
 
-    public function updateTask(Request $request, Task $task)
+    public function updateTask(DateRequest $request, Task $task)
     {
         $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
 
@@ -39,7 +41,7 @@ class TrackController extends Controller
         }
     }
 
-    public function updateSalat(Request $request, Salat $salat)
+    public function updateSalat(DateRequest $request, Salat $salat)
     {
         $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
 
@@ -67,7 +69,7 @@ class TrackController extends Controller
     }
 
 
-    public function updateSunnahSalat(Request $request, Salat $salat)
+    public function updateSunnahSalat(SalatRequest $request, Salat $salat)
     {
         $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
 
@@ -96,6 +98,13 @@ class TrackController extends Controller
             DB::rollBack();
             throw $th;
         }
+    }
+
+    public function updateQuran(DateRequest $request)
+    {
+        $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
+
+
     }
 
     private function validateDate($date)
