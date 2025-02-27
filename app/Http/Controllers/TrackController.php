@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DateRequest;
-use App\Http\Requests\SalatRequest;
 use App\Models\Task;
 use App\Models\Salat;
+use App\Models\QuranTrack;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Http\Requests\DateRequest;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\QuranRequest;
+use App\Http\Requests\SalatRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TrackController extends Controller
 {
@@ -100,11 +103,28 @@ class TrackController extends Controller
         }
     }
 
-    public function updateQuran(DateRequest $request)
+    public function updateQuran(QuranRequest $request)
     {
-        $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
+        $validatedData = $request->validated();
 
+        $find = QuranTrack::whereDate('created_at', $validatedData['date'])->where('user_id', Auth::id())->first();
 
+        $data = [
+            'user_id' => auth()->user()->id,
+            ...$validatedData,
+            'created_at' => $validatedData['date'],
+            'updated_at' => $validatedData['date'],
+        ];
+
+        unset($data['date']);
+
+        if ($find) {
+            unset($data['user_id']);
+            unset($data['created_at']);
+            $find->update($data);
+        } else {
+            QuranTrack::create($data);
+        }
     }
 
     private function validateDate($date)

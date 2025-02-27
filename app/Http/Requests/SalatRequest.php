@@ -22,7 +22,7 @@ class SalatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => 'nullable|date_format:Y-m-d',
+            'date' => 'required|date_format:Y-m-d',
             'sunnah_rakat' => 'required|integer|min:0|max:23',
         ];
     }

@@ -107,23 +107,29 @@
                             >
                                 <td class="py-8">
                                     <input
+                                        v-model="quran.ayat"
+                                        @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="w-10 h-8 bg-white border border-gray-300 rounded text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
+                                        class="w-16 h-8 bg-white border border-gray-300 rounded text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                                 <td class="py-8">
                                     <input
+                                        v-model="quran.page"
+                                        @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="w-10 h-8 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600"
+                                        class="w-16 h-8 bg-white border border-gray-300 rounded text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                                 <td class="py-8">
                                     <input
+                                        v-model="quran.para"
+                                        @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="w-10 h-8 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600"
+                                        class="w-16 h-8 bg-white border border-gray-300 rounded text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                             </tr>
@@ -212,7 +218,7 @@
 // Give page title name
 import { Head, router } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 const props = defineProps({
     salats: Object,
@@ -221,6 +227,11 @@ const props = defineProps({
 });
 
 const date = ref(props.date);
+const quran = reactive({
+    ayat: 5,
+    page: 0,
+    para: 0,
+});
 
 function getDateData() {
     router.get(
@@ -278,6 +289,24 @@ function sunnahAction(id: number, sunnah_rakat: number) {
     router.post(
         `/track/salat/sunnah_rakat/update/${id}`,
         { date: date.value, sunnah_rakat: sunnah_rakat },
+        {
+            preserveScroll: true,
+            // onSuccess: () => {
+            //     console.log('Task updated successfully!');
+            //     // Perform any success actions, such as showing a success message
+            // },
+            onError: (errors) => {
+                console.error('Error updating task:', errors);
+                showError(errors);
+            },
+        },
+    );
+}
+
+function quranAction() {
+    router.post(
+        '/track/quran/update',
+        { ayat: quran.ayat, page: quran.page, para: quran.para, date: date.value, },
         {
             preserveScroll: true,
             // onSuccess: () => {
