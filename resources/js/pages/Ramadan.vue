@@ -10,8 +10,8 @@
                     v-model="date"
                     @change="getDateData()"
                     type="date"
-                    class="p-2 text-gray-700 rounded-lg bg-amber-200 focus:ring border-amber-200 dark:border-gray-600 focus:ring-amber-400 dark:bg-gray-800 dark:text-gray-400 dark:focus:ring-gray-400"
-                    style="color-scheme: dark light;"
+                    class="p-2 text-gray-700 rounded-lg border-amber-200 bg-amber-200 focus:ring focus:ring-amber-400 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:focus:ring-gray-400"
+                    style="color-scheme: dark light"
                 />
             </div>
         </div>
@@ -69,7 +69,8 @@
                                 <td class="py-8">{{ salat.name }}</td>
                                 <td class="py-8">
                                     <input
-                                            @click="salatAction(salat.id)"
+                                        :checked="salat.owned === true"
+                                        @click="salatAction(salat.id)"
                                         type="checkbox"
                                         class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                     />
@@ -270,5 +271,4 @@ function salatAction(id: number) {
         },
     );
 }
-
 </script>

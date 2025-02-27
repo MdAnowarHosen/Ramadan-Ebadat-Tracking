@@ -25,14 +25,6 @@ class HomeController extends Controller
             $date = now()->format('Y-m-d');
         }
 
-        // Fetch all tasks
-        // $tasks = Task::withExists(['users as is_user_assigned' => function ($query) use ($date) {
-        //     $query->where('user_id', Auth::id());
-        //     // I need where pivot table created_at is equal to $date
-        // }])
-        //     ->get();
-        // return $tasks;
-
         $tasks = Task::withExists(['users as owned' => function ($query) use ($date) {
             $query->where('user_id', Auth::id())
                   ->whereDate('task_user.created_at', $date); // Ensure you reference the pivot table's `created_at`
@@ -40,9 +32,15 @@ class HomeController extends Controller
 
         // return $tasks;
 
+        $salats = Salat::withExists(['users as owned' => function ($query) use ($date) {
+            $query->where('user_id', Auth::id())
+                  ->whereDate('salat_user.created_at', $date); // Ensure you reference the pivot table's `created_at`
+        }])->get();
+
+        // return $salats;
 
         return inertia('Ramadan', [
-            'salats' => Salat::all(),
+            'salats' => $salats,
             'tasks' => $tasks,
             'date' => $date,
         ]);
