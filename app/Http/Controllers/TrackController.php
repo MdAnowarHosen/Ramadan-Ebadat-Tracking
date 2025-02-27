@@ -14,15 +14,8 @@ class TrackController extends Controller
 
     public function updateTask(Request $request, Task $task)
     {
-        // Get the date from the request or default to the current date
-        $date = $request->date ?? now()->format('Y-m-d');
+        $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
 
-        // Validate date format
-        $validatedDate = Carbon::createFromFormat('Y-m-d', $date);
-        if (!$validatedDate) {
-            // If the date is invalid, fall back to today's date
-            $date = now()->format('Y-m-d');
-        }
         // Toggle task on the pivot table (attach the task if it's not yet assigned for that date)
         $user = auth()->user();
 
@@ -48,15 +41,7 @@ class TrackController extends Controller
 
     public function updateSalat(Request $request, Salat $salat)
     {
-        // Get the date from the request or default to the current date
-        $date = $request->date ?? now()->format('Y-m-d');
-
-        // Validate date format
-        $validatedDate = Carbon::createFromFormat('Y-m-d', $date);
-        if (!$validatedDate) {
-            // If the date is invalid, fall back to today's date
-            $date = now()->format('Y-m-d');
-        }
+        $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
 
         // Toggle salat on the pivot table (attach the salat if it's not yet assigned for that date)
         $user = auth()->user();
@@ -84,15 +69,7 @@ class TrackController extends Controller
 
     public function updateSunnahSalat(Request $request, Salat $salat)
     {
-        // Get the date from the request or default to the current date
-        $date = $request->date ?? now()->format('Y-m-d');
-
-        // Validate date format
-        $validatedDate = Carbon::createFromFormat('Y-m-d', $date);
-        if (!$validatedDate) {
-            // If the date is invalid, fall back to today's date
-            $date = now()->format('Y-m-d');
-        }
+        $date = $this->validateDate($request->date ?? now()->format('Y-m-d'));
 
         $sunnah_rakat = $request->sunnah_rakat;
 
@@ -119,5 +96,11 @@ class TrackController extends Controller
             DB::rollBack();
             throw $th;
         }
+    }
+
+    private function validateDate($date)
+    {
+        $validatedDate = Carbon::createFromFormat('Y-m-d', $date);
+        return $validatedDate ? $date : now()->format('Y-m-d');
     }
 }
