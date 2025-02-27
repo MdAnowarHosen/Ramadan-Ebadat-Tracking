@@ -8,7 +8,8 @@ use Inertia\Inertia;
 Route::get('/', HomeController::class)->name('home');
 
 Route::controller(TrackController::class)->middleware(['auth'])->prefix('track')->name('track.')->group(function () {
-    Route::post('/task/update/{task}', 'updateTask')->name('update');
+    Route::post('task/update/{task}', 'updateTask')->name('task.update');
+    Route::post('salat/update/{salat}', 'updateSalat')->name('salat.update');
 });
 
 

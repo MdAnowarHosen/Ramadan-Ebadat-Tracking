@@ -4,12 +4,15 @@
     <div class="max-w-4xl p-6 mx-auto rounded-lg shadow-lg bg-amber-50 dark:bg-gray-700">
         <!-- Header -->
         <div class="flex items-center justify-between pb-4 border-b">
+            <div class="w-full px-4 py-2 mr-3 font-medium text-gray-600 rounded bg-amber-200 dark:bg-gray-800 dark:text-gray-400">১ রমাদান</div>
             <div>
-                <!-- <p>১ রমাদান ১৪৪০</p> -->
-            </div>
-            <div class="px-4 py-2 font-medium text-gray-600 rounded bg-amber-400 dark:bg-gray-800 dark:text-gray-400">১ রমাদান</div>
-            <div>
-                <input v-model="date" @change="getDateData()"  type="date"  />
+                <input
+                    v-model="date"
+                    @change="getDateData()"
+                    type="date"
+                    class="p-2 text-gray-700 rounded-lg bg-amber-200 focus:ring border-amber-200 dark:border-gray-600 focus:ring-amber-400 dark:bg-gray-800 dark:text-gray-400 dark:focus:ring-gray-400"
+                    style="color-scheme: dark light;"
+                />
             </div>
         </div>
 
@@ -66,6 +69,7 @@
                                 <td class="py-8">{{ salat.name }}</td>
                                 <td class="py-8">
                                     <input
+                                            @click="salatAction(salat.id)"
                                         type="checkbox"
                                         class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                     />
@@ -102,7 +106,7 @@
                                     <input
                                         type="number"
                                         min="0"
-                                        class="w-10 h-8 bg-white border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-600"
+                                        class="w-10 h-8 bg-white border border-gray-300 rounded text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                                 <td class="py-8">
@@ -203,10 +207,8 @@
 
 <script lang="ts" setup>
 // Give page title name
-import { Head } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
-import { ref, computed  } from 'vue';
-import moment from 'moment';
+import { Head, router } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 const props = defineProps({
     salats: Object,
@@ -216,30 +218,57 @@ const props = defineProps({
 
 const date = ref(props.date);
 
-
-function getDateData(){
-    router.get('/', { date: date.value }, {
-        preserveScroll: true,
-        onError: (errors) => {
-            console.error('Error updating task:', errors);
-            alert('Failed');
-            // Handle validation or other errors
-        }
-    });
+function getDateData() {
+    router.get(
+        '/',
+        { date: date.value },
+        {
+            preserveScroll: true,
+            onError: (errors) => {
+                console.error('Error updating task:', errors);
+                alert('Failed');
+                // Handle validation or other errors
+            },
+        },
+    );
 }
 
 function doAction(id: number) {
-    router.post(`/track/task/update/${id}`, { date: date.value }, {
-        preserveScroll: true,
-        // onSuccess: () => {
-        //     console.log('Task updated successfully!');
-        //     // Perform any success actions, such as showing a success message
-        // },
-        onError: (errors) => {
-            console.error('Error updating task:', errors);
-            alert('Failed');
-            // Handle validation or other errors
-        }
-    });
+    router.post(
+        `/track/task/update/${id}`,
+        { date: date.value },
+        {
+            preserveScroll: true,
+            // onSuccess: () => {
+            //     console.log('Task updated successfully!');
+            //     // Perform any success actions, such as showing a success message
+            // },
+            onError: (errors) => {
+                console.error('Error updating task:', errors);
+                alert('Failed');
+                // Handle validation or other errors
+            },
+        },
+    );
 }
+
+function salatAction(id: number) {
+    router.post(
+        `/track/salat/update/${id}`,
+        { date: date.value },
+        {
+            preserveScroll: true,
+            // onSuccess: () => {
+            //     console.log('Task updated successfully!');
+            //     // Perform any success actions, such as showing a success message
+            // },
+            onError: (errors) => {
+                console.error('Error updating task:', errors);
+                alert('Failed');
+                // Handle validation or other errors
+            },
+        },
+    );
+}
+
 </script>
