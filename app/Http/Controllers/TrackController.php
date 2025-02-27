@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class TrackController extends Controller
 {
@@ -67,19 +68,26 @@ class TrackController extends Controller
             // If the date is invalid, fall back to today's date
             $date = now()->format('Y-m-d');
         }
-
         // Toggle task on the pivot table (attach the task if it's not yet assigned for that date)
         $user = auth()->user();
 
-        // Check if the task is already assigned for the specific date
-        $existingPivot = $user->tasks($date)->wherePivot('task_id', $task->id)->first();
-        // dd($existingPivot);
-        if (!$existingPivot) {
-            // If not assigned, attach the task to the user for the given date
-            $user->tasks($date)->attach($task->id, ['created_at' => Carbon::parse($date), 'updated_at' => Carbon::parse($date)]);
-        }
+        DB::beginTransaction();
+        try {
+            // Check if the task is already assigned for the specific date
+            $existingPivot = $user->tasks($date)->wherePivot('task_id', $task->id)->first();
+            // dd($existingPivot);
+            if (!$existingPivot) {
+                // If not assigned, attach the task to the user for the given date
+                $user->tasks($date)->attach($task->id, ['created_at' => Carbon::parse($date), 'updated_at' => Carbon::parse($date)]);
+            } else {
+                // detach
+                $user->tasks($date)->detach($task->id);
+            }
 
-        // Optionally, you can update the task itself if needed
-        $task->update(['created_at' => Carbon::parse($date), 'updated_at' => Carbon::parse($date)]);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 }
