@@ -4,12 +4,22 @@ import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSep
 import type { User } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { LogOut, Settings } from 'lucide-vue-next';
+import { useForm } from '@inertiajs/vue3';
 
 interface Props {
     user: User;
 }
 
 defineProps<Props>();
+
+const form = useForm({});
+function logout() {
+    form.post(route('logout'), {
+        onSuccess: () => {
+            window.location.reload(); // Force full reload after logout
+        },
+    });
+    }
 </script>
 
 <template>
@@ -22,16 +32,24 @@ defineProps<Props>();
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
             <Link class="block w-full" :href="route('profile.edit')" as="button">
-                <Settings class="mr-2 h-4 w-4" />
+                <Settings class="w-4 h-4 mr-2" />
                 Settings
             </Link>
         </DropdownMenuItem>
     </DropdownMenuGroup>
     <DropdownMenuSeparator />
-    <DropdownMenuItem :as-child="true">
+    <!-- <DropdownMenuItem :as-child="true">
         <Link class="block w-full" method="post" :href="route('logout')" as="button">
-            <LogOut class="mr-2 h-4 w-4" />
+            <LogOut class="w-4 h-4 mr-2" />
             Log out
         </Link>
-    </DropdownMenuItem>
+    </DropdownMenuItem> -->
+
+    <DropdownMenuItem :as-child="true">
+    <button class="block w-full" @click="logout">
+        <LogOut class="w-4 h-4 mr-2" />
+        Log out
+    </button>
+</DropdownMenuItem>
+
 </template>
