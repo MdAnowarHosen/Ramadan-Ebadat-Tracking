@@ -12,6 +12,19 @@
             <DashCard header="সুন্নাত রাকাত" content="আদায় হয়েছে" :description="`${props.data?.salat?.last_week?.total_sunnah_rakat || 0} রাকাত`" footer="এই সপ্তাহে" />
         </div>
     </div>
+        <!-- quran report -->
+    <div class="mt-10">
+        <h1 class="px-4 mb-4 ml-3 text-lg font-medium ">কুরআন রিপোর্ট</h1>
+        <div class="grid gap-4 px-4 grid-cols md:grid-cols-3 ">
+            <DashCard header="কুরআন" content="পড়া হয়েছে" :description="`${props.data?.quran_track?.today?.total_ayat || 0} আয়াত`" footer="আজ" />
+            <DashCard header="কুরআন" content="পড়া হয়েছে" :description="`${props.data?.quran_track?.today?.total_page || 0} পাতা`" footer="আজ" />
+            <DashCard header="কুরআন" content="পড়া হয়েছে" :description="`${props.data?.quran_track?.today?.total_para || 0} পারা`" footer="আজ" />
+
+            <DashCard header="কুরআন" content="পড়া হয়েছে" :description="`${props.data?.quran_track?.last_week?.total_ayat || 0} আয়াত`" footer="এই সপ্তাহে" />
+            <DashCard header="কুরআন" content="পড়া হয়েছে" :description="`${props.data?.quran_track?.last_week?.total_page || 0} পাতা`" footer="এই সপ্তাহে" />
+            <DashCard header="কুরআন" content="পড়া হয়েছে" :description="`${props.data?.quran_track?.last_week?.total_para || 0} পারা`" footer="এই সপ্তাহে" />
+        </div>
+    </div>
      <!-- task report -->
     <div class="mt-10">
         <h1 class="px-4 mb-4 ml-3 text-lg font-medium ">দৈনিক চেকলিস্ট রিপোর্ট</h1>

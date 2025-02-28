@@ -86,7 +86,6 @@ class ReportController extends Controller
                 ],
             ],
         ];
-        return response()->json($data);
 
         return inertia('Report', ['data' => $data]);
     }
