@@ -12,6 +12,7 @@ class ReportController extends Controller
     {
         $user = Auth::user();
 
+        // salats
         $last_week_salats = $user->get_salats()
             ->wherePivot('created_at', '>=', now()->subWeek())
             ->get();
@@ -27,24 +28,43 @@ class ReportController extends Controller
         // todays total sunnah rakat
         $todays_sunnah_rakat = $last_week_salats->sum(fn($salat) => $salat->pivot->sunnah_rakat ?? 0);
 
+        // tasks
+        $last_week_tasks = $user->get_tasks()
+            ->wherePivot('created_at', '>=', now()->subWeek())
+            ->get();
 
-        $salat_data = (object) [
+
+        // Filter today's salats
+        $todays_tasks = $last_week_tasks->filter(function ($task) {
+            return Carbon::parse($task->pivot->created_at)->isToday();
+        });
+
+
+        $data = (object) [
             'salat' => (object) [
-                'last_week' => (object) [
-                    'total_wakto' => $last_week_salats->count(),
-                    'total_faraj_rakat' => $last_week_salats->sum('faraj_rakat'),
-                    'total_sunnah_rakat' => $last_week_total_sunnah_rakat,
-                ],
                 'today' => (object) [
                     'total_wakto' => $todays_salats->count(),
                     'total_faraj_rakat' => $todays_salats->sum('faraj_rakat'),
                     'total_sunnah_rakat' => $todays_sunnah_rakat,
                 ],
+                'last_week' => (object) [
+                    'total_wakto' => $last_week_salats->count(),
+                    'total_faraj_rakat' => $last_week_salats->sum('faraj_rakat'),
+                    'total_sunnah_rakat' => $last_week_total_sunnah_rakat,
+                ],
+            ],
+            'task' => (object) [
+                'today' => (object) [
+                    'total_tasks' => $todays_tasks->count(),
+                ],
+                'last_week' => (object) [
+                    'total_tasks' => $last_week_tasks->count(),
+                ],
             ],
         ];
 
 
-        return response()->json($salat_data);
+        return response()->json($data);
 
 
         return inertia('Report');
