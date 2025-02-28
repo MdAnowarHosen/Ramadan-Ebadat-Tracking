@@ -12,6 +12,9 @@ class ReportController extends Controller
     {
         $user = Auth::user();
 
+        // =============================================================
+        // =============================================================
+
         // salats
         $last_week_salats = $user->get_salats()
             ->wherePivot('created_at', '>=', now()->subWeek())
@@ -28,6 +31,8 @@ class ReportController extends Controller
         // todays total sunnah rakat
         $todays_sunnah_rakat = $last_week_salats->sum(fn($salat) => $salat->pivot->sunnah_rakat ?? 0);
 
+        // =============================================================
+        // =============================================================
         // tasks
         $last_week_tasks = $user->get_tasks()
             ->wherePivot('created_at', '>=', now()->subWeek())
@@ -39,6 +44,13 @@ class ReportController extends Controller
             return Carbon::parse($task->pivot->created_at)->isToday();
         });
 
+        // =============================================================
+        // =============================================================
+
+        $last_week_quran_track = $user->quran_tracks()->whereDate('created_at', '>=', now()->subWeek())->get();
+        $todays_quran_track = $last_week_quran_track->filter(function ($quran) {
+            return Carbon::parse($quran->created_at)->isToday();
+        })->first();
 
         $data = (object) [
             'salat' => (object) [
@@ -53,6 +65,18 @@ class ReportController extends Controller
                     'total_sunnah_rakat' => $last_week_total_sunnah_rakat,
                 ],
             ],
+            'quran_track' => (object) [
+                'today' => (object) [
+                    'total_ayat' => $todays_quran_track->ayat,
+                    'total_page' => $todays_quran_track->page,
+                    'total_para' => $todays_quran_track->para,
+                ],
+                'last_week' => (object) [
+                    'total_ayat' => $last_week_quran_track->sum('ayat'),
+                    'total_page' => $last_week_quran_track->sum('page'),
+                    'total_para' => $last_week_quran_track->sum('para'),
+                ],
+            ],
             'task' => (object) [
                 'today' => (object) [
                     'total_tasks' => $todays_tasks->count(),
@@ -62,6 +86,7 @@ class ReportController extends Controller
                 ],
             ],
         ];
+        return response()->json($data);
 
         return inertia('Report', ['data' => $data]);
     }
