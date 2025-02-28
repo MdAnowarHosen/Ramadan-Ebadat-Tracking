@@ -34,12 +34,12 @@
             <DashCard header="দৈনিক চেকলিস্ট" content="সম্পূর্ণ হয়েছে" :description="`${props.data?.task?.last_week?.total_tasks || 0} টি`" footer="এই সপ্তাহে" />
         </div>
     </div>
+
 </template>
 
 <script lang="ts" setup>
 import DashCard from '../components/custom/DashCard.vue';
 import { Head } from '@inertiajs/vue3';
-
 // define props
 const props = defineProps({
     data: Object,

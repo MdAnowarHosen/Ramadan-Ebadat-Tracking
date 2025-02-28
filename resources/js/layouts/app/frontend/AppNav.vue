@@ -94,6 +94,9 @@
                             >লগ আউট</Link
                         >
                     </li>
+                    <li>
+                        <AppearanceSwitch />
+                    </li>
                 </ul>
             </div>
         </div>
@@ -104,6 +107,7 @@
 import { Link } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 import { computed } from "vue";
+import AppearanceSwitch from '@/components/AppearanceSwitch.vue';
 
 const page = usePage();
 const user = computed(() => page.props.auth.user); // Access authenticated user
