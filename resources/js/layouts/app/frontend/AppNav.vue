@@ -64,11 +64,11 @@
                             </div>
                         </div>
                     </li> -->
-                    <li>
+                    <li v-if="user">
                         <Link
-                            href="/about"
+                            href="/report"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
-                            >আমাদের সম্পর্কে</Link
+                            >রিপোর্ট</Link
                         >
                     </li>
                     <li v-if="!user">
