@@ -23,9 +23,6 @@ const form = useForm({
 const submit = () => {
     form.post(route('login'), {
         onFinish: () => form.reset('password'),
-        onSuccess: () => {
-            window.location.reload(); // Force full reload after logout
-        },
     });
 };
 </script>

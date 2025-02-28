@@ -71,18 +71,27 @@
                             >আমাদের সম্পর্কে</Link
                         >
                     </li>
-                    <li v-if="!auth.user">
+                    <li v-if="!user">
                         <Link
                             href="/login"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
                             >লগিন</Link
                         >
                     </li>
-                    <li v-if="!auth.user">
+                    <li v-if="!user">
                         <Link
                             href="/register"
                             class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
                             >রেজিস্টার</Link
+                        >
+                    </li>
+                    <li v-if="user">
+                        <Link
+                            href="/logout"
+                            method="post"
+
+                            class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
+                            >লগ আউট</Link
                         >
                     </li>
                 </ul>
@@ -94,5 +103,9 @@
 <script lang="ts" setup>
 import { Link } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
-const auth = usePage().props.auth;
+import { computed } from "vue";
+
+const page = usePage();
+const user = computed(() => page.props.auth.user); // Access authenticated user
+
 </script>
