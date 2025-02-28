@@ -1,4 +1,5 @@
 <template>
+    <Head title="রিপোর্ট"></Head>
     <!-- salat report -->
     <div>
         <h1 class="px-4 mb-4 ml-3 text-lg font-medium ">স্বলাত রিপোর্ট</h1>
@@ -37,6 +38,7 @@
 
 <script lang="ts" setup>
 import DashCard from '../components/custom/DashCard.vue';
+import { Head } from '@inertiajs/vue3';
 
 // define props
 const props = defineProps({
