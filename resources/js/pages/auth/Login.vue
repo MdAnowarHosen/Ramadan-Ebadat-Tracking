@@ -28,7 +28,7 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthBase title="Log in to your account" description="Enter your email and password below to log in">
+    <AuthBase title="আপনার একাউন্টে লগ ইন করুন" description="লগ ইন করতে নিম্নে আপনার ইমেইল এবং পাসওয়ার্ড প্রবেশ করুন">
         <Head title="Log in" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-center text-green-600">
@@ -38,7 +38,7 @@ const submit = () => {
         <form @submit.prevent="submit" class="flex flex-col gap-6">
             <div class="grid gap-6">
                 <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
+                    <Label for="email">ইমেইল</Label>
                     <Input
                         id="email"
                         type="email"
@@ -54,8 +54,8 @@ const submit = () => {
 
                 <div class="grid gap-2">
                     <div class="flex items-center justify-between">
-                        <Label for="password">Password</Label>
-                        <TextLink v-if="canResetPassword" :href="route('password.request')" class="text-sm" :tabindex="5"> Forgot password? </TextLink>
+                        <Label for="password">পাসওয়ার্ড</Label>
+                        <TextLink v-if="canResetPassword" :href="route('password.request')" class="text-sm" :tabindex="5"> পাসওয়ার্ড ভুলে গেছেন? </TextLink>
                     </div>
                     <Input
                         id="password"
@@ -64,7 +64,7 @@ const submit = () => {
                         :tabindex="2"
                         autocomplete="current-password"
                         v-model="form.password"
-                        placeholder="Password"
+                        placeholder="পাসওয়ার্ড"
                     />
                     <InputError :message="form.errors.password" />
                 </div>
@@ -72,19 +72,19 @@ const submit = () => {
                 <div class="flex items-center justify-between" :tabindex="3">
                     <Label for="remember" class="flex items-center space-x-3">
                         <Checkbox id="remember" v-model:checked="form.remember" :tabindex="4" />
-                        <span>Remember me</span>
+                        <span>মনে রাখুন</span>
                     </Label>
                 </div>
 
                 <Button type="submit" class="w-full mt-4" :tabindex="4" :disabled="form.processing">
                     <LoaderCircle v-if="form.processing" class="w-4 h-4 animate-spin" />
-                    Log in
+                    লগ ইন
                 </Button>
             </div>
 
             <div class="text-sm text-center text-muted-foreground">
-                Don't have an account?
-                <TextLink :href="route('register')" :tabindex="5">Sign up</TextLink>
+                অ্যাকাউন্ট নাই?
+                <TextLink :href="route('register')" :tabindex="5">নতুন একাউন্ট তৈরি করুন</TextLink>
             </div>
         </form>
     </AuthBase>
