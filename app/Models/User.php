@@ -68,6 +68,13 @@ class User extends Authenticatable
             ->wherePivot('created_at', $date);
     }
 
+    public function get_salats(): BelongsToMany
+    {
+        return $this->belongsToMany(Salat::class, 'salat_user')
+            ->withPivot('sunnah_rakat')
+            ->withTimestamps();
+    }
+
     public function quran_tracks(): HasMany
     {
         return $this->hasMany(QuranTrack::class);
