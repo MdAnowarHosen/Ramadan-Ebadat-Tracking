@@ -6,7 +6,7 @@
             >{{ props.content }}
             <CardDescription>{{ props.description }}</CardDescription>
         </CardContent>
-        <CardFooter>{{ props.footer }}</CardFooter>
+        <CardFooter class="text-gray-400 ">{{ props.footer }}</CardFooter>
     </Card>
 </template>
 

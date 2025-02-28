@@ -63,10 +63,6 @@ class ReportController extends Controller
             ],
         ];
 
-
-        return response()->json($data);
-
-
-        return inertia('Report');
+        return inertia('Report', ['data' => $data]);
     }
 }
