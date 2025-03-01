@@ -17,20 +17,20 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout title="Verify email" description="Please verify your email address by clicking on the link we just emailed to you.">
-        <Head title="Email verification" />
+    <AuthLayout title="ইমেল যাচাই করুন" description="আমরা এইমাত্র আপনাকে ইমেল করেছি সেই লিঙ্কটিতে ক্লিক করে অনুগ্রহ করে আপনার ইমেল ঠিকানা যাচাই করুন৷">
+        <Head title="ইমেল যাচাইকরণ" />
 
-        <div v-if="status === 'verification-link-sent'" class="mb-4 text-center text-sm font-medium text-green-600">
-            A new verification link has been sent to the email address you provided during registration.
+        <div v-if="status === 'verification-link-sent'" class="mb-4 text-sm font-medium text-center text-green-600">
+            নিবন্ধনের সময় আপনার দেওয়া ইমেল ঠিকানায় একটি নতুন যাচাইকরণ লিঙ্ক পাঠানো হয়েছে।
         </div>
 
         <form @submit.prevent="submit" class="space-y-6 text-center">
             <Button :disabled="form.processing" variant="secondary">
-                <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                Resend verification email
+                <LoaderCircle v-if="form.processing" class="w-4 h-4 animate-spin" />
+                যাচাইকরণ ইমেল পুনরায় পাঠান
             </Button>
 
-            <TextLink :href="route('logout')" method="post" as="button" class="mx-auto block text-sm"> Log out </TextLink>
+            <TextLink :href="route('logout')" method="post" as="button" class="block mx-auto text-sm"> লগ আউট </TextLink>
         </form>
     </AuthLayout>
 </template>

@@ -57,34 +57,34 @@ class ReportController extends Controller
         $data = (object) [
             'salat' => (object) [
                 'today' => (object) [
-                    'total_wakto' => $numto->bnNum($todays_salats->count()),
-                    'total_faraj_rakat' => $numto->bnNum($todays_salats->sum('faraj_rakat')),
-                    'total_sunnah_rakat' => $numto->bnNum($todays_sunnah_rakat),
+                    'total_wakto' => $numto->bnNum($todays_salats->count() ?? 0),
+                    'total_faraj_rakat' => $numto->bnNum($todays_salats->sum('faraj_rakat') ?? 0),
+                    'total_sunnah_rakat' => $numto->bnNum($todays_sunnah_rakat ?? 0 ),
                 ],
                 'last_week' => (object) [
-                    'total_wakto' => $numto->bnNum($last_week_salats->count()),
-                    'total_faraj_rakat' => $numto->bnNum($last_week_salats->sum('faraj_rakat')),
-                    'total_sunnah_rakat' => $numto->bnNum($last_week_total_sunnah_rakat),
+                    'total_wakto' => $numto->bnNum($last_week_salats->count() ?? 0 ),
+                    'total_faraj_rakat' => $numto->bnNum($last_week_salats->sum('faraj_rakat') ?? 0 ),
+                    'total_sunnah_rakat' => $numto->bnNum($last_week_total_sunnah_rakat ?? 0 ),
                 ],
             ],
             'quran_track' => (object) [
                 'today' => (object) [
-                    'total_ayat' => $numto->bnNum($todays_quran_track->ayat),
-                    'total_page' => $numto->bnNum($todays_quran_track->page),
-                    'total_para' => $numto->bnNum($todays_quran_track->para),
+                    'total_ayat' => $numto->bnNum($todays_quran_track->ayat ?? 0 ),
+                    'total_page' => $numto->bnNum($todays_quran_track->page ?? 0 ),
+                    'total_para' => $numto->bnNum($todays_quran_track->para ?? 0 ),
                 ],
                 'last_week' => (object) [
-                    'total_ayat' => $numto->bnNum($last_week_quran_track->sum('ayat')),
-                    'total_page' => $numto->bnNum($last_week_quran_track->sum('page')),
-                    'total_para' => $numto->bnNum($last_week_quran_track->sum('para')),
+                    'total_ayat' => $numto->bnNum($last_week_quran_track->sum('ayat') ?? 0 ),
+                    'total_page' => $numto->bnNum($last_week_quran_track->sum('page') ?? 0 ),
+                    'total_para' => $numto->bnNum($last_week_quran_track->sum('para') ?? 0 ),
                 ],
             ],
             'task' => (object) [
                 'today' => (object) [
-                    'total_tasks' => $numto->bnNum($todays_tasks->count()),
+                    'total_tasks' => $numto->bnNum($todays_tasks->count() ?? 0 ),
                 ],
                 'last_week' => (object) [
-                    'total_tasks' => $numto->bnNum($last_week_tasks->count()),
+                    'total_tasks' => $numto->bnNum($last_week_tasks->count() ?? 0 ),
                 ],
             ],
         ];
