@@ -8,6 +8,9 @@ use App\Models\Salat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use Rakibhstu\Banglanumber\NumberToBangla;
 
 class HomeController extends Controller
 {
@@ -26,11 +29,15 @@ class HomeController extends Controller
             $date = now()->format('Y-m-d');
         }
 
+        // subtract 1 day for hijri date
+        $forHijriDateAdjust = Carbon::parse($date)->subDay()->format('Y-m-d');
+
         $tasks = Task::withExists(['users as owned' => function ($query) use ($date) {
             $query->where('user_id', Auth::id())
                 ->whereDate('task_user.created_at', $date); // Ensure you reference the pivot table's `created_at`
         }])->get();
 
+        $numto = new NumberToBangla();
         // return $tasks;
 
         // $salats = Salat::withExists(['users as owned' => function ($query) use ($date) {
@@ -62,14 +69,26 @@ class HomeController extends Controller
 
         // return $salats;
 
+        // Cache::forget('todays_ayat');
+            $todays_ayat = Cache::remember('todays_ayat', 86400, function () use ($numto) {
+                $response = Http::retry(3, 100)->withQueryParameters([
+                    'translations' => '163',
+                    'fields' => 'text_uthmani,chapter_id,hizb_number,text_imlaei_simple',
+                    'words' => 'false',
+                ])->get('https://api.quran.com/api/v4/verses/random')->json();
 
-        $quran_data = QuranTrack::where('user_id', Auth::id())
-            ->whereDate('created_at', $date)
-            ->select(array_diff((new QuranTrack)->getFillable(), ['created_at', 'updated_at']))
-            ->first();
+                return (object) [
+                    'verse' => $numto->bnNum($response['verse']['chapter_id']) . ':' . $numto->bnNum($response['verse']['verse_number']),
+                    'arabic_text' => $response['verse']['text_uthmani'],
+                    'bangla_text' => $response['verse']['translations'][0]['text'],
+                ];
+
+            });
+
 
         return inertia('Ramadan', [
             'date' => $date,
+            'hijri_date_adjust' => $forHijriDateAdjust,
             'salats' => $salats,
             'quran_data' => $quran_data ?? [
                 'ayat' => 0,
@@ -77,6 +96,7 @@ class HomeController extends Controller
                 'para' => 0,
             ],
             'tasks' => $tasks,
+            'todays_ayat' => $todays_ayat,
         ]);
     }
 }
