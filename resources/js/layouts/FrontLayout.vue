@@ -1,10 +1,12 @@
 <template>
     <div>
-        <AppNav/>
-        <main>
-            <slot />
-        </main>
-        <AppFooter/>
+        <AppNav />
+        <div class="w-full max-w-screen-xl mx-auto">
+            <main>
+                <slot />
+            </main>
+        </div>
+        <AppFooter />
     </div>
 </template>
 

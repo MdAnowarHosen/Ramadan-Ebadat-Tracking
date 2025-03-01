@@ -25,14 +25,14 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthBase title="Create an account" description="Enter your details below to create your account">
-        <Head title="Register" />
+    <AuthBase title="নতুন একাউন্ট তৈরি করুন" description="একাউন্ট তৈরি করতে নিম্নের তথ্য গুলো প্রবেশ করুন">
+        <Head title="একাউন্ট তৈরি" />
 
         <form @submit.prevent="submit" class="flex flex-col gap-6">
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="name">নাম</Label>
-                    <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name" v-model="form.name" placeholder="Full name" />
+                    <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name" v-model="form.name" placeholder="সম্পূর্ণ নাম" />
                     <InputError :message="form.errors.name" />
                 </div>
 
@@ -73,7 +73,7 @@ const submit = () => {
                         :tabindex="3"
                         autocomplete="new-password"
                         v-model="form.password"
-                        placeholder="Password"
+                        placeholder="পাসওয়ার্ড"
                     />
                     <InputError :message="form.errors.password" />
                 </div>
@@ -87,20 +87,20 @@ const submit = () => {
                         :tabindex="4"
                         autocomplete="new-password"
                         v-model="form.password_confirmation"
-                        placeholder="Confirm password"
+                        placeholder="নিশ্চিত পাসওয়ার্ড"
                     />
                     <InputError :message="form.errors.password_confirmation" />
                 </div>
 
                 <Button type="submit" class="w-full mt-2" tabindex="5" :disabled="form.processing">
                     <LoaderCircle v-if="form.processing" class="w-4 h-4 animate-spin" />
-                    Create account
+                    একাউন্ট তৈরি করুন
                 </Button>
             </div>
 
             <div class="text-sm text-center text-muted-foreground">
-                Already have an account?
-                <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">Log in</TextLink>
+            ইতিমধ্যে একাউন্ট আছে?
+                <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">লগ ইন</TextLink>
             </div>
         </form>
     </AuthBase>

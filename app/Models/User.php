@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Salat;
 use App\Enums\EnumGender;
 use App\Models\QuranTrack;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -68,6 +68,13 @@ class User extends Authenticatable
             ->wherePivot('created_at', $date);
     }
 
+    public function get_salats(): BelongsToMany
+    {
+        return $this->belongsToMany(Salat::class, 'salat_user')
+            ->withPivot('sunnah_rakat')
+            ->withTimestamps();
+    }
+
     public function quran_tracks(): HasMany
     {
         return $this->hasMany(QuranTrack::class);
@@ -81,5 +88,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Task::class, 'task_user')
             ->withTimestamps()
             ->wherePivot('created_at', $date);
+    }
+
+    public function get_tasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class, 'task_user')
+            ->withTimestamps();
     }
 }
