@@ -21,10 +21,10 @@
             <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
                 <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের আয়াত</h2>
                 <p class="mt-2 text-right text-gray-600 dark:text-gray-400">
-                    وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ <br />
-                    (الذاريات: ৫৬)
+                    {{ props.todays_ayat.arabic_text }}<br />
+                    ({{ props.todays_ayat.verse }})
                 </p>
-                <p class="mt-2 text-gray-600 dark:text-gray-400">আমার ইবাদত করা ছাড়া আমি মানব ও জিন জাতি সৃষ্টি করিনি।</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-400">{{ props.todays_ayat.bangla_text }}</p>
             </div>
 
             <!-- Hadith of the Day -->
@@ -225,6 +225,7 @@ const props = defineProps({
     salats: Object,
     quran_data: Object,
     tasks: Object,
+    todays_ayat: Object,
 });
 
 const date = ref(props.date);
