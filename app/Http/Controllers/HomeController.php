@@ -29,6 +29,9 @@ class HomeController extends Controller
             $date = now()->format('Y-m-d');
         }
 
+        // subtract 1 day for hijri date
+        $forHijriDateAdjust = Carbon::parse($date)->subDay()->format('Y-m-d');
+
         $tasks = Task::withExists(['users as owned' => function ($query) use ($date) {
             $query->where('user_id', Auth::id())
                 ->whereDate('task_user.created_at', $date); // Ensure you reference the pivot table's `created_at`
@@ -85,6 +88,7 @@ class HomeController extends Controller
 
         return inertia('Ramadan', [
             'date' => $date,
+            'hijri_date_adjust' => $forHijriDateAdjust,
             'salats' => $salats,
             'quran_data' => $quran_data ?? [
                 'ayat' => 0,

@@ -222,6 +222,7 @@ import moment from 'moment-hijri';
 
 const props = defineProps({
     date: String,
+    hijri_date_adjust: String,
     salats: Object,
     quran_data: Object,
     tasks: Object,
@@ -229,6 +230,7 @@ const props = defineProps({
 });
 
 const date = ref(props.date);
+const hijri_date_adjust = ref(props.hijri_date_adjust);
 const quran = ref(props.quran_data);
 
 function getDateData() {
@@ -354,7 +356,7 @@ const bengaliMonths = {
 };
 
 // Convert Gregorian date to Hijri and format it
-const dateA = moment(date.value, 'YYYY-MM-DD');
+const dateA = moment(hijri_date_adjust.value, 'YYYY-MM-DD');
 const formattedDate = dateA.format('iD,iMMMM,iYYYY');
 // console.log('formated date is: ', formattedDate);
 // console.log('Month Name is: ', bengaliMonths["Rabi' al-Thani"]);
