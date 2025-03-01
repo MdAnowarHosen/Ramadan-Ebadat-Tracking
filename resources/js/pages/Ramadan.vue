@@ -71,8 +71,8 @@
                                         :checked="salat.owned === true"
                                         @click="salatAction(salat.id)"
                                         type="checkbox"
-                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                                    />
+                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-600 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                                        />
                                 </td>
                                 <td class="py-8">
                                     <input
@@ -196,7 +196,7 @@
                                         <input
                                             :checked="task.owned === true"
                                             @click="doAction(task.id)"
-                                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm dark:8ocus:ring-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-600 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
                                             type="checkbox"
                                         />
                                     </td>
