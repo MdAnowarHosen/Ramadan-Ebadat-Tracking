@@ -1,190 +1,115 @@
-<script setup lang="ts">
-import AppLogo from '@/components/AppLogo.vue';
-import AppLogoIcon from '@/components/AppLogoIcon.vue';
-import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import UserMenuContent from '@/components/UserMenuContent.vue';
-import { getInitials } from '@/composables/useInitials';
-import type { BreadcrumbItem, NavItem } from '@/types';
-import { Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
-import { computed } from 'vue';
+<template>
+    <nav class="mb-5 border-gray-200 bg-amber-50 dark:border-gray-700 dark:bg-gray-900">
+        <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
+            <Link href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/logo.png" class="h-8" alt="Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-400">Ramadan</span>
+            </Link>
+            <button
+                data-collapse-toggle="navbar-dropdown"
+                type="button"
+                class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+                aria-controls="navbar-dropdown"
+                aria-expanded="false"
+            >
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+                <ul
+                    class="flex flex-col p-4 mt-4 font-medium border rounded-lg border-amber-400 bg-amber-50 dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse"
+                >
+                    <li>
+                        <Link
+                            href="/"
+                            class="block px-3 py-2 text-gray-800 rounded-sm activeNavLink md:hover:text-amber-700 md:bg-transparent md:p-0 dark:text-gray-400 md:dark:bg-transparent md:dark:hover:text-gray-300"
+                            aria-current="page"
+                            >হোম</Link
+                        >
+                    </li>
+                    <!-- <li>
+                        <button
+                            id="dropdownNavbarLink"
+                            data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:text-white md:w-auto md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
+                        >
+                            Dropdown
+                            <svg class="ms-2.5 h-2.5 w-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <div
+                            id="dropdownNavbar"
+                            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:divide-gray-600 dark:bg-gray-700"
+                        >
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                </li>
+                            </ul>
+                            <div class="py-1">
+                                <a
+                                    href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    >Sign out</a
+                                >
+                            </div>
+                        </div>
+                    </li> -->
+                    <li v-if="user">
+                        <Link
+                            href="/report"
+                            class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
+                            >রিপোর্ট</Link
+                        >
+                    </li>
+                    <li v-if="!user">
+                        <Link
+                            href="/login"
+                            class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
+                            >লগিন</Link
+                        >
+                    </li>
+                    <li v-if="!user">
+                        <Link
+                            href="/register"
+                            class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
+                            >রেজিস্টার</Link
+                        >
+                    </li>
+                    <li v-if="user">
+                        <Link
+                            href="/logout"
+                            method="post"
 
-interface Props {
-    breadcrumbs?: BreadcrumbItem[];
-}
+                            class="block px-3 py-2 text-gray-800 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-amber-700 md:dark:hover:bg-transparent md:dark:hover:text-gray-300"
+                            >লগ আউট</Link
+                        >
+                    </li>
+                    <li>
+                        <AppearanceToggle />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</template>
 
-const props = withDefaults(defineProps<Props>(), {
-    breadcrumbs: () => [],
-});
+<script lang="ts" setup>
+import { Link } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+import { computed } from "vue";
+import AppearanceToggle from '@/components/AppearanceToggle.vue';
 
 const page = usePage();
-const auth = computed(() => page.props.auth);
+const user = computed(() => page.props.auth.user); // Access authenticated user
 
-const isCurrentRoute = (url: string) => {
-    return page.url === url;
-};
-
-const activeItemStyles = computed(() => (url: string) => (isCurrentRoute(url) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : ''));
-
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
-    },
-];
-
-const rightNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
-    },
-];
 </script>
-
-<template>
-    <div>
-        <div class="border-b border-sidebar-border/80">
-            <div class="flex items-center h-16 px-4 mx-auto md:max-w-7xl">
-                <!-- Mobile Menu -->
-                <div class="lg:hidden">
-                    <Sheet>
-                        <SheetTrigger :as-child="true">
-                            <Button variant="ghost" size="icon" class="mr-2 h-9 w-9">
-                                <Menu class="w-5 h-5" />
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="left" class="w-[300px] p-6">
-                            <SheetTitle class="sr-only">Navigation Menu</SheetTitle>
-                            <SheetHeader class="flex justify-start text-left">
-                                <AppLogoIcon class="text-black fill-current size-6 dark:text-white" />
-                            </SheetHeader>
-                            <div class="flex flex-col justify-between flex-1 h-full py-6 space-y-4">
-                                <nav class="-mx-3 space-y-1">
-                                    <Link
-                                        v-for="item in mainNavItems"
-                                        :key="item.title"
-                                        :href="item.href"
-                                        class="flex items-center px-3 py-2 text-sm font-medium rounded-lg gap-x-3 hover:bg-accent"
-                                        :class="activeItemStyles(item.href)"
-                                    >
-                                        <component v-if="item.icon" :is="item.icon" class="w-5 h-5" />
-                                        {{ item.title }}
-                                    </Link>
-                                </nav>
-                                <div class="flex flex-col space-y-4">
-                                    <a
-                                        v-for="item in rightNavItems"
-                                        :key="item.title"
-                                        :href="item.href"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="flex items-center space-x-2 text-sm font-medium"
-                                    >
-                                        <component v-if="item.icon" :is="item.icon" class="w-5 h-5" />
-                                        <span>{{ item.title }}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
-                </div>
-
-                <Link :href="route('admin.dashboard')" class="flex items-center gap-x-2">
-                    <AppLogo class="hidden h-6 xl:block" />
-                </Link>
-
-                <!-- Desktop Menu -->
-                <div class="hidden h-full lg:flex lg:flex-1">
-                    <NavigationMenu class="flex items-stretch h-full ml-10">
-                        <NavigationMenuList class="flex items-stretch h-full space-x-2">
-                            <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index" class="relative flex items-center h-full">
-                                <Link :href="item.href">
-                                    <NavigationMenuLink
-                                        :class="[navigationMenuTriggerStyle(), activeItemStyles(item.href), 'h-9 cursor-pointer px-3']"
-                                    >
-                                        <component v-if="item.icon" :is="item.icon" class="w-4 h-4 mr-2" />
-                                        {{ item.title }}
-                                    </NavigationMenuLink>
-                                </Link>
-                                <div class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"></div>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    </NavigationMenu>
-                </div>
-
-                <div class="flex items-center ml-auto space-x-2">
-                    <div class="relative flex items-center space-x-1">
-                        <Button variant="ghost" size="icon" class="cursor-pointer group h-9 w-9">
-                            <Search class="size-5 opacity-80 group-hover:opacity-100" />
-                        </Button>
-
-                        <div class="hidden space-x-1 lg:flex">
-                            <template v-for="item in rightNavItems" :key="item.title">
-                                <TooltipProvider :delay-duration="0">
-                                    <Tooltip>
-                                        <TooltipTrigger>
-                                            <Button variant="ghost" size="icon" as-child class="cursor-pointer group h-9 w-9">
-                                                <a :href="item.href" target="_blank" rel="noopener noreferrer">
-                                                    <span class="sr-only">{{ item.title }}</span>
-                                                    <component :is="item.icon" class="size-5 opacity-80 group-hover:opacity-100" />
-                                                </a>
-                                            </Button>
-                                        </TooltipTrigger>
-                                        <TooltipContent>
-                                            <p>{{ item.title }}</p>
-                                        </TooltipContent>
-                                    </Tooltip>
-                                </TooltipProvider>
-                            </template>
-                        </div>
-                    </div>
-
-                    <DropdownMenu>
-                        <DropdownMenuTrigger :as-child="true">
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                class="relative w-auto p-1 rounded-full size-10 focus-within:ring-2 focus-within:ring-primary"
-                            >
-                                <Avatar class="overflow-hidden rounded-full size-8">
-                                    <AvatarImage :src="auth.user.avatar" :alt="auth.user.name" />
-                                    <AvatarFallback class="font-semibold text-black rounded-lg bg-neutral-200 dark:bg-neutral-700 dark:text-white">
-                                        {{ getInitials(auth.user?.name) }}
-                                    </AvatarFallback>
-                                </Avatar>
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" class="w-56">
-                            <UserMenuContent :user="auth.user" />
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-            </div>
-        </div>
-
-        <div v-if="props.breadcrumbs.length > 1" class="flex w-full border-b border-sidebar-border/70">
-            <div class="flex items-center justify-start w-full h-12 px-4 mx-auto text-neutral-500 md:max-w-7xl">
-                <Breadcrumbs :breadcrumbs="breadcrumbs" />
-            </div>
-        </div>
-    </div>
-</template>

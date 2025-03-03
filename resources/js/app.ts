@@ -6,7 +6,6 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import { initializeTheme } from './composables/useAppearance';
-import 'flowbite';
 import FrontLayout from './layouts/FrontLayout.vue';
 import AppLayout from './layouts/AppLayout.vue';
 

@@ -20,6 +20,7 @@ import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { BookAIcon, BookOpen, Folder, HouseIcon, LayoutGrid, LogInIcon, Menu, UserPlus } from 'lucide-vue-next';
 import { computed } from 'vue';
+import AppearanceToggle from '@/components/AppearanceToggle.vue';
 
 interface Props {
     breadcrumbs?: BreadcrumbItem[];
@@ -190,6 +191,10 @@ const rightNavItems: NavItem[] = [
                             <UserMenuContentFront :user="auth.user" />
                         </DropdownMenuContent>
                     </DropdownMenu>
+                    <div>
+                        <AppearanceToggle  class="mt-1 ml-3"/>
+                    </div>
+
                 </div>
             </div>
         </div>

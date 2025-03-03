@@ -8,7 +8,6 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.{vue,js,ts,jsx,tsx}',
-         "./node_modules/flowbite/**/*.js",
     ],
     theme: {
     	extend: {
@@ -77,5 +76,5 @@ export default {
     		}
     	}
     },
-    plugins: [require('tailwindcss-animate'), require('flowbite/plugin')],
+    plugins: [require('tailwindcss-animate')],
 };
