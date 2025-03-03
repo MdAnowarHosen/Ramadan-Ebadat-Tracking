@@ -211,6 +211,7 @@
             </div>
         </div>
     </div>
+    <p>Current Route: {{ currentUrl }}</p>
 </template>
 
 <script lang="ts" setup>
@@ -219,6 +220,8 @@ import { Head, router } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
 import { ref } from 'vue';
 import moment from 'moment-hijri';
+
+const currentUrl = ref(window.location.href);
 
 const props = defineProps({
     date: String,
