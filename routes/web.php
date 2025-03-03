@@ -22,8 +22,10 @@ Route::middleware(['auth', 'verified', 'date'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'admin', 'verified'])->group(function () {
+Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+
     Route::get('dashboard', function () {
+
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
