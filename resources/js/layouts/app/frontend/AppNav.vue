@@ -18,7 +18,7 @@ import UserMenuContentFront from '@/components/UserMenuContentFront.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, Folder, HouseIcon, LayoutGrid, LogInIcon, Menu, UserPlus } from 'lucide-vue-next';
+import { BookAIcon, BookOpen, Folder, HouseIcon, LayoutGrid, LogInIcon, Menu, UserPlus } from 'lucide-vue-next';
 import { computed } from 'vue';
 
 interface Props {
@@ -43,6 +43,13 @@ const mainNavItems: NavItem[] = [
         title: 'হোম',
         href: '/',
         icon: HouseIcon,
+        for: '',
+    },
+    {
+        title: 'রিপর্ট',
+        href: '/report',
+        icon: BookAIcon,
+        for: 'user',
     },
 ];
 
@@ -51,14 +58,15 @@ const rightNavItems: NavItem[] = [
         title: 'লগ ইন',
         href: '/login',
         icon: LogInIcon,
-        user_type: 'guest',
+        for: 'guest',
     },
     {
         title: 'রেজিস্টার',
         href: '/register',
         icon: UserPlus,
-        user_type: 'guest',
-    }
+        for: 'guest',
+    },
+
 ];
 </script>
 
@@ -100,7 +108,7 @@ const rightNavItems: NavItem[] = [
                                         rel="noopener noreferrer"
                                         class="flex items-center space-x-2 text-sm font-medium"
                                     >
-                                        <div  v-if="!(item.user_type === 'guest' && auth.user)">
+                                        <div  v-if="!(item.for === 'guest' && auth.user || item.for === 'user' && !auth.user)">
                                             <component v-if="item.icon" :is="item.icon" class="w-5 h-5" />
                                             <span>{{ item.title }}</span>
                                         </div>
@@ -112,7 +120,7 @@ const rightNavItems: NavItem[] = [
                     </Sheet>
                 </div>
 
-                <Link :href="route('admin.dashboard')" class="flex items-center gap-x-2">
+                <Link :href="route('home')" class="flex items-center gap-x-2">
                     <AppLogo class="hidden h-6 xl:block" />
                 </Link>
 
@@ -121,7 +129,7 @@ const rightNavItems: NavItem[] = [
                     <NavigationMenu class="flex items-stretch h-full ml-10">
                         <NavigationMenuList class="flex items-stretch h-full space-x-2">
                             <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index" class="relative flex items-center h-full">
-                                <Link :href="item.href">
+                                <Link :href="item.href"  v-if="!(item.for === 'guest' && auth.user || item.for === 'user' && !auth.user)">
                                     <NavigationMenuLink
                                         :class="[navigationMenuTriggerStyle(), activeItemStyles(item.href), 'h-9 cursor-pointer px-3']"
                                     >
@@ -144,7 +152,7 @@ const rightNavItems: NavItem[] = [
                         <div class="hidden space-x-1 lg:flex">
                             <template v-for="item in rightNavItems" :key="item.title">
                                 <TooltipProvider :delay-duration="0"
-                                v-if="!(item.user_type === 'guest' && auth.user)" >
+                                v-if="!(item.for === 'guest' && auth.user || item.for === 'user' && !auth.user)" >
                                     <Tooltip>
                                         <TooltipTrigger>
                                             <Button variant="ghost" size="icon" as-child class="cursor-pointer group h-9 w-9">
