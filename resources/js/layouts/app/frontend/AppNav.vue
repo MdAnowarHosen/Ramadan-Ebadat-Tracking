@@ -37,7 +37,7 @@ const isCurrentRoute = (url: string) => {
     return page.url === url;
 };
 
-const activeItemStyles = computed(() => (url: string) => (isCurrentRoute(url) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : ''));
+const activeItemStyles = computed(() => (url: string) => (isCurrentRoute(url) ? 'text-neutral-900 bg-yellow-100 dark:bg-neutral-800 dark:text-neutral-100' : ''));
 
 const mainNavItems: NavItem[] = [
     {
@@ -73,7 +73,7 @@ const rightNavItems: NavItem[] = [
 
 <template>
     <div>
-        <div class="border-b border-sidebar-border/80">
+        <div class="border-b border-sidebar-border/80 bg-amber-50 dark:bg-gray-800">
             <div class="flex items-center h-16 px-4 mx-auto md:max-w-7xl">
                 <!-- Mobile Menu -->
                 <div class="lg:hidden">
@@ -132,7 +132,7 @@ const rightNavItems: NavItem[] = [
                             <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index" class="relative flex items-center h-full">
                                 <Link :href="item.href"  v-if="!(item.for === 'guest' && auth.user || item.for === 'user' && !auth.user)">
                                     <NavigationMenuLink
-                                        :class="[navigationMenuTriggerStyle(), activeItemStyles(item.href), 'h-9 cursor-pointer px-3']"
+                                        :class="[navigationMenuTriggerStyle(), activeItemStyles(item.href), 'h-9 cursor-pointer px-3 bg-yellow-50 dark:bg-gray-800']"
                                     >
                                         <component v-if="item.icon" :is="item.icon" class="w-4 h-4 mr-2" />
                                         {{ item.title }}
