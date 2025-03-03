@@ -14,11 +14,11 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import UserMenuContentFront from '@/components/UserMenuContentFront.vue';
+import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, Folder, HouseIcon, LayoutGrid, LogInIcon, Menu, UserPlus } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
 import { computed } from 'vue';
 
 interface Props {
@@ -40,25 +40,23 @@ const activeItemStyles = computed(() => (url: string) => (isCurrentRoute(url) ? 
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'হোম',
-        href: '/',
-        icon: HouseIcon,
+        title: 'Dashboard',
+        href: '/dashboard',
+        icon: LayoutGrid,
     },
 ];
 
 const rightNavItems: NavItem[] = [
     {
-        title: 'লগ ইন',
-        href: '/login',
-        icon: LogInIcon,
-        user_type: 'guest',
+        title: 'Repository',
+        href: 'https://github.com/laravel/vue-starter-kit',
+        icon: Folder,
     },
     {
-        title: 'রেজিস্টার',
-        href: '/register',
-        icon: UserPlus,
-        user_type: 'guest',
-    }
+        title: 'Documentation',
+        href: 'https://laravel.com/docs/starter-kits',
+        icon: BookOpen,
+    },
 ];
 </script>
 
@@ -75,7 +73,7 @@ const rightNavItems: NavItem[] = [
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left" class="w-[300px] p-6">
-                            <SheetTitle class="sr-only">মেনু</SheetTitle>
+                            <SheetTitle class="sr-only">Navigation Menu</SheetTitle>
                             <SheetHeader class="flex justify-start text-left">
                                 <AppLogoIcon class="text-black fill-current size-6 dark:text-white" />
                             </SheetHeader>
@@ -97,14 +95,12 @@ const rightNavItems: NavItem[] = [
                                         v-for="item in rightNavItems"
                                         :key="item.title"
                                         :href="item.href"
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         class="flex items-center space-x-2 text-sm font-medium"
                                     >
-                                        <div  v-if="!(item.user_type === 'guest' && auth.user)">
-                                            <component v-if="item.icon" :is="item.icon" class="w-5 h-5" />
-                                            <span>{{ item.title }}</span>
-                                        </div>
-
+                                        <component v-if="item.icon" :is="item.icon" class="w-5 h-5" />
+                                        <span>{{ item.title }}</span>
                                     </a>
                                 </div>
                             </div>
@@ -137,18 +133,17 @@ const rightNavItems: NavItem[] = [
 
                 <div class="flex items-center ml-auto space-x-2">
                     <div class="relative flex items-center space-x-1">
-                        <!-- <Button variant="ghost" size="icon" class="cursor-pointer group h-9 w-9">
+                        <Button variant="ghost" size="icon" class="cursor-pointer group h-9 w-9">
                             <Search class="size-5 opacity-80 group-hover:opacity-100" />
-                        </Button> -->
+                        </Button>
 
                         <div class="hidden space-x-1 lg:flex">
                             <template v-for="item in rightNavItems" :key="item.title">
-                                <TooltipProvider :delay-duration="0"
-                                v-if="!(item.user_type === 'guest' && auth.user)" >
+                                <TooltipProvider :delay-duration="0">
                                     <Tooltip>
                                         <TooltipTrigger>
                                             <Button variant="ghost" size="icon" as-child class="cursor-pointer group h-9 w-9">
-                                                <a :href="item.href" rel="noopener noreferrer">
+                                                <a :href="item.href" target="_blank" rel="noopener noreferrer">
                                                     <span class="sr-only">{{ item.title }}</span>
                                                     <component :is="item.icon" class="size-5 opacity-80 group-hover:opacity-100" />
                                                 </a>
@@ -163,14 +158,14 @@ const rightNavItems: NavItem[] = [
                         </div>
                     </div>
 
-                    <DropdownMenu v-if="auth.user">
+                    <DropdownMenu>
                         <DropdownMenuTrigger :as-child="true">
                             <Button
                                 variant="ghost"
                                 size="icon"
                                 class="relative w-auto p-1 rounded-full size-10 focus-within:ring-2 focus-within:ring-primary"
                             >
-                                <Avatar class="overflow-hidden rounded-full size-8" >
+                                <Avatar class="overflow-hidden rounded-full size-8">
                                     <AvatarImage :src="auth.user.avatar" :alt="auth.user.name" />
                                     <AvatarFallback class="font-semibold text-black rounded-lg bg-neutral-200 dark:bg-neutral-700 dark:text-white">
                                         {{ getInitials(auth.user?.name) }}
@@ -179,7 +174,7 @@ const rightNavItems: NavItem[] = [
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" class="w-56">
-                            <UserMenuContentFront :user="auth.user" />
+                            <UserMenuContent :user="auth.user" />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -193,4 +188,3 @@ const rightNavItems: NavItem[] = [
         </div>
     </div>
 </template>
-
