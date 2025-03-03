@@ -31,7 +31,7 @@ function logout() {
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
-            <Link class="block w-full" :href="route('profile.edit')" as="button">
+            <Link class="block w-full" :href="route('admin.profile.edit')" as="button">
                 <Settings class="w-4 h-4 mr-2" />
                 Settings
             </Link>

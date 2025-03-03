@@ -23,7 +23,7 @@ defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Profile settings',
-        href: '/settings/profile',
+        href: '/admin/settings/profile',
     },
 ];
 
@@ -36,7 +36,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.patch(route('profile.update'), {
+    form.patch(route('admin.profile.update'), {
         preserveScroll: true,
     });
 };
@@ -53,7 +53,7 @@ const submit = () => {
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid gap-2">
                         <Label for="name">Name</Label>
-                        <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" placeholder="Full name" />
+                        <Input id="name" class="block w-full mt-1" v-model="form.name" required autocomplete="name" placeholder="Full name" />
                         <InputError class="mt-2" :message="form.errors.name" />
                     </div>
 
@@ -62,7 +62,7 @@ const submit = () => {
                         <Input
                             id="email"
                             type="email"
-                            class="mt-1 block w-full"
+                            class="block w-full mt-1"
                             v-model="form.email"
                             required
                             autocomplete="username"
@@ -78,7 +78,7 @@ const submit = () => {
                                 :href="route('verification.send')"
                                 method="post"
                                 as="button"
-                                class="focus:outline-hidden rounded-md text-sm text-neutral-600 underline hover:text-neutral-900 focus:ring-2 focus:ring-offset-2"
+                                class="text-sm underline rounded-md focus:outline-hidden text-neutral-600 hover:text-neutral-900 focus:ring-2 focus:ring-offset-2"
                             >
                                 Click here to re-send the verification email.
                             </Link>

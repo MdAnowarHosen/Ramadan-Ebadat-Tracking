@@ -12,7 +12,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('password.confirm'), {
+    form.post(route('admin.password.confirm'), {
         onFinish: () => {
             form.reset();
         },
