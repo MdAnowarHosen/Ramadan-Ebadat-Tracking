@@ -37,7 +37,7 @@ const isCurrentRoute = (url: string) => {
     return page.url === url;
 };
 
-const activeItemStyles = computed(() => (url: string) => (isCurrentRoute(url) ? 'text-neutral-900 bg-yellow-100 dark:bg-neutral-800 dark:text-neutral-100' : ''));
+const activeItemStyles = computed(() => (url: string) => (isCurrentRoute(url) ? 'text-neutral-900 bg-gray-100 md:bg-amber-100 dark:bg-neutral-800 dark:text-neutral-100' : ''));
 
 const mainNavItems: NavItem[] = [
     {
