@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminSalatController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -10,5 +11,10 @@ Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.'
 
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    // Salat routes
+    Route::controller(AdminSalatController::class)->prefix('salat')->name('salat.')->group(function(){
+        Route::get('/', 'index')->name('index');
+    });
 });
 

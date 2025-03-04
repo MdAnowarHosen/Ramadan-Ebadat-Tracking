@@ -16,7 +16,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Salat',
-        href: '/admin/dashboard',
+        href: '/admin/salat',
         icon: CalendarClockIcon,
     },
 ];
