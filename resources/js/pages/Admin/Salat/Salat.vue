@@ -37,7 +37,7 @@ defineProps<{
 </script>
 
 <template>
-    <Head title="Salat" />
+    <Head title="স্বলাত সমূহ" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <Link class="mt-2"  :href="route('admin.salat.create')" ><Button variant="outline">স্বলাত যুক্ত করুন</Button></Link>
   <Table>

@@ -16,6 +16,6 @@ class AdminSalatController extends Controller
 
     public function create()
     {
-        dd('ok');
+        return inertia('Admin/Salat/SalatCreate');
     }
 }
