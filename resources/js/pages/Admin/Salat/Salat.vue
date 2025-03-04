@@ -22,6 +22,7 @@ import {
 import { FilePenLine, Trash  } from 'lucide-vue-next';
 import { Button } from "@/components/ui/button"
 import { Link } from '@inertiajs/vue3';
+import { ChevronDown  } from 'lucide-vue-next';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -60,7 +61,7 @@ defineProps<{
         <TableCell>{{ row.faraj_rakat }}</TableCell>
         <TableCell>
             <DropdownMenu>
-                <DropdownMenuTrigger><Button variant="outline">নির্বাচন</Button></DropdownMenuTrigger>
+                <DropdownMenuTrigger><Button variant="outline"><ChevronDown /></Button></DropdownMenuTrigger>
                 <DropdownMenuContent>
                 <DropdownMenuLabel>একশন সমূহ</DropdownMenuLabel>
                 <DropdownMenuSeparator />
