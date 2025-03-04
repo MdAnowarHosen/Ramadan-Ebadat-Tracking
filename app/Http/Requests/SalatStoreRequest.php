@@ -21,9 +21,11 @@ class SalatStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $salat = $this->route('salat')->id ?? null;
         return [
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|unique:salats,name,' . $salat,
             'faraj_rakat' => 'required|numeric|min:0',
+            // 'position' => 'required|numeric|min:1'
         ];
     }
 }
