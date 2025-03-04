@@ -11,10 +11,19 @@ import {
 import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { FilePenLine, Trash  } from 'lucide-vue-next';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Salat',
+        title: 'স্বলাত',
         href: '/admin/salat',
     },
 ];
@@ -29,17 +38,15 @@ defineProps<{
     <Head title="Salat" />
     <AppLayout :breadcrumbs="breadcrumbs">
   <Table>
-    <TableCaption>A list of your recent invoices.</TableCaption>
+    <TableCaption>সকল স্বলাত।</TableCaption>
     <TableHeader>
       <TableRow>
         <TableHead class="w-[100px]">
-          Invoice
+          নাম
         </TableHead>
-        <TableHead>Status</TableHead>
-        <TableHead>Method</TableHead>
-        <TableHead class="text-right">
-          Amount
-        </TableHead>
+        <TableHead>ফরজ রাকাত</TableHead>
+        <TableHead>একশন</TableHead>
+
       </TableRow>
     </TableHeader>
     <TableBody>
@@ -48,10 +55,18 @@ defineProps<{
           INV001
         </TableCell>
         <TableCell>Paid</TableCell>
-        <TableCell>Credit Card</TableCell>
-        <TableCell class="text-right">
-          $250.00
+        <TableCell>
+            <DropdownMenu>
+                <DropdownMenuTrigger class="primary-admin-button">নির্বাচন</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                <DropdownMenuLabel>একশন সমূহ</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem><FilePenLine /> সম্পাদনা করুন</DropdownMenuItem>
+                <DropdownMenuItem><Trash /> মুছে ফেলুন</DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </TableCell>
+
       </TableRow>
     </TableBody>
   </Table>
