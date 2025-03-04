@@ -48,7 +48,7 @@ function logout() {
     <DropdownMenuItem :as-child="true">
     <button class="block w-full" @click="logout">
         <LogOut class="w-4 h-4 mr-2" />
-        Log out
+        লগ আউট
     </button>
 </DropdownMenuItem>
 
