@@ -91,7 +91,7 @@ function remove(id) {
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>একশন সমূহ</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem><FilePenLine /> সম্পাদন করুন</DropdownMenuItem>
+                                <Link :href="route('admin.salat.edit', {salat:row.id})"><DropdownMenuItem> <FilePenLine /> সম্পাদন করুন</DropdownMenuItem></Link>
                                 <DropdownMenuItem @click="remove(row.id)"><Trash /> মুছে ফেলুন</DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>

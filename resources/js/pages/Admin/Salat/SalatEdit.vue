@@ -18,24 +18,27 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-defineProps<{
-    data?: object;
+const props = defineProps<{
+    data?: {
+        id?: number,
+        name?: string;
+        faraj_rakat?: number;
+    };
 }>();
 
 const form = useForm({
-    name: '',
-    faraj_rakat: 0,
+    name: props.data?.name || '',
+    faraj_rakat: props.data?.faraj_rakat || 0,
 });
 
 function submit() {
-    form.post(route('admin.salat.store'), {
+    form.put(route('admin.salat.update',{ salat:props.data.id  }), {
         onSuccess: function () {
-            form.reset();
             Swal.fire({
                 toast: true,
                 position: 'top-end',
                 icon: 'success',
-                title: 'স্বলাত সংযুক্ত করা হয়েছে',
+                title: 'স্বলাত সম্পাদন করা হয়েছে',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
@@ -57,7 +60,7 @@ function submit() {
 <template>
     <Head title="স্বলাত যুক্ত করুন" />
     <AppLayout :breadcrumbs="breadcrumbs">
-        <CardContent title="স্বলাত সংযুক্ত করুন" header="স্বলাত সংযুক্ত করতে নিম্নের তথ্য গুলো প্রবেশ করুন" class="mt-5">
+        <CardContent title="স্বলাত সম্পাদন করুন" header="স্বলাত সম্পাদন করতে নিম্নের তথ্য গুলো প্রবেশ করুন" class="mt-5">
             <form @submit.prevent="submit">
                 <div class="grid grid-cols-1 gap-4 mx-5 mt-5 md:grid-cols-2">
                     <div class="">
@@ -93,7 +96,7 @@ function submit() {
 
                 <Button type="submit" variant="outline" class="mx-5 mt-4" :tabindex="4" :disabled="form.processing">
                     <LoaderCircle v-if="form.processing" class="w-4 h-4 animate-spin" />
-                    সংরক্ষন করুন
+                    হালনাগাদ করুন
                 </Button>
             </form>
         </CardContent>

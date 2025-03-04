@@ -23,7 +23,7 @@ class SalatStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50',
-            'rakat' => 'required|numeric|min:0',
+            'faraj_rakat' => 'required|numeric|min:0',
         ];
     }
 }

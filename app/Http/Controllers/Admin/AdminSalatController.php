@@ -25,8 +25,21 @@ class AdminSalatController extends Controller
         $validatedData = $request->validated();
         Salat::create([
             'name' => $validatedData['name'],
-            'faraj_rakat' => $validatedData['rakat'],
+            'faraj_rakat' => $validatedData['faraj_rakat'],
         ]);
+    }
+
+    public function edit(Salat $salat)
+    {
+        return inertia('Admin/Salat/SalatEdit', ['data' => $salat]);
+    }
+
+    public function update(SalatStoreRequest $request, Salat $salat)
+    {
+        $validatedData = $request->validated();
+        $salat->name = $validatedData['name'];
+        $salat->faraj_rakat = $validatedData['faraj_rakat'];
+        $salat->update();
     }
 
     public function destroy(Salat $salat)
