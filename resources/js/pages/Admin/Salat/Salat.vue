@@ -64,7 +64,7 @@ defineProps<{
                 <DropdownMenuContent>
                 <DropdownMenuLabel>একশন সমূহ</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem><FilePenLine /> সম্পাদনা করুন</DropdownMenuItem>
+                <DropdownMenuItem><FilePenLine /> সম্পাদন করুন</DropdownMenuItem>
                 <DropdownMenuItem><Trash /> মুছে ফেলুন</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
