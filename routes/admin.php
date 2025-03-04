@@ -17,6 +17,7 @@ Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.'
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
+        Route::delete('/store/{salat}', 'destroy')->name('destroy');
     });
 });
 

@@ -28,4 +28,9 @@ class AdminSalatController extends Controller
             'faraj_rakat' => $validatedData['rakat'],
         ]);
     }
+
+    public function destroy(Salat $salat)
+    {
+        $salat->delete();
+    }
 }
