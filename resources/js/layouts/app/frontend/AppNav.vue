@@ -73,7 +73,7 @@ const rightNavItems: NavItem[] = [
 
 <template>
     <div>
-        <div class="border-b border-sidebar-border/80 bg-amber-50 dark:bg-gray-800">
+        <div class="border-b border-amber-300 dark:border-gray-700 border-sidebar-border/80 bg-amber-50 dark:bg-gray-800">
             <div class="flex items-center h-16 px-4 mx-auto md:max-w-7xl">
                 <!-- Mobile Menu -->
                 <div class="lg:hidden">
@@ -138,7 +138,7 @@ const rightNavItems: NavItem[] = [
                                         {{ item.title }}
                                     </NavigationMenuLink>
                                 </Link>
-                                <div class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"></div>
+                                <div class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-amber-300 dark:bg-gray-600"></div>
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
