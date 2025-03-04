@@ -13,4 +13,9 @@ class AdminSalatController extends Controller
         $data = Salat::all();
         return inertia('Admin/Salat/Salat', ['data' => $data]);
     }
+
+    public function create()
+    {
+        dd('ok');
+    }
 }

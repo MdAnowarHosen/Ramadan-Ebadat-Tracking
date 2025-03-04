@@ -15,6 +15,7 @@ Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.'
     // Salat routes
     Route::controller(AdminSalatController::class)->prefix('salat')->name('salat.')->group(function(){
         Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
     });
 });
 

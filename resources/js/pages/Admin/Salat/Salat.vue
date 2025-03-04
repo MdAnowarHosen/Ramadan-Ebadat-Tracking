@@ -20,6 +20,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { FilePenLine, Trash  } from 'lucide-vue-next';
+import { Button } from "@/components/ui/button"
+import { Link } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -37,6 +39,7 @@ defineProps<{
 <template>
     <Head title="Salat" />
     <AppLayout :breadcrumbs="breadcrumbs">
+        <Link class="mt-2"  :href="route('admin.salat.create')" ><Button variant="outline">স্বলাত যুক্ত করুন</Button></Link>
   <Table>
     <TableCaption>সকল স্বলাত।</TableCaption>
     <TableHeader>
@@ -50,14 +53,14 @@ defineProps<{
       </TableRow>
     </TableHeader>
     <TableBody>
-      <TableRow>
+      <TableRow v-for="row in data" :key="row.id" >
         <TableCell class="font-medium">
-          INV001
+          {{ row.name }}
         </TableCell>
-        <TableCell>Paid</TableCell>
+        <TableCell>{{ row.faraj_rakat }}</TableCell>
         <TableCell>
             <DropdownMenu>
-                <DropdownMenuTrigger class="primary-admin-button">নির্বাচন</DropdownMenuTrigger>
+                <DropdownMenuTrigger><Button variant="outline">নির্বাচন</Button></DropdownMenuTrigger>
                 <DropdownMenuContent>
                 <DropdownMenuLabel>একশন সমূহ</DropdownMenuLabel>
                 <DropdownMenuSeparator />
