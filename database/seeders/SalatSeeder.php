@@ -28,22 +28,22 @@ class SalatSeeder extends Seeder
             [
                 'name' => 'আসর',
                 'faraj_rakat' => 4,
-                'position' => 3,
+                'position' => 4,
             ],
             [
                 'name' => 'মাগরিব',
                 'faraj_rakat' => 3,
-                'position' => 4,
+                'position' => 5,
             ],
             [
                 'name' => 'ইশা',
                 'faraj_rakat' => 4,
-                'position' => 5,
+                'position' => 6,
             ],
             [
                 'name' => "জুম'আ",
                 'faraj_rakat' => 2,
-                'position' => 6,
+                'position' => 3,
             ],
         );
 

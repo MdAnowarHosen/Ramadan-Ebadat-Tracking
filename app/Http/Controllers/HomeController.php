@@ -29,6 +29,10 @@ class HomeController extends Controller
             $date = now()->format('Y-m-d');
         }
 
+        $dayName = Carbon::parse($date)->format('l');
+
+
+
         // subtract 1 day for hijri date
         $forHijriDateAdjust = Carbon::parse($date)->subDay()->format('Y-m-d');
 
@@ -47,12 +51,16 @@ class HomeController extends Controller
 
         // return $salats;
 
-        $salats = Salat::with(['users' => function ($query) use ($date) {
+        $exclude = $dayName === "Friday" ? ["যোহর"] : ["জুম'আ"];
+
+
+        $salats = Salat::orderBy('position')->whereNotIn('name', $exclude)->with(['users' => function ($query) use ($date) {
             $query->where('user_id', Auth::id())
                 ->whereDate('salat_user.created_at', $date)
                 ->select('users.id', 'salat_user.sunnah_rakat', 'salat_user.created_at', 'salat_user.updated_at');
         }])->get()->map(function ($salat) {
             $userPivot = $salat->users->first()?->pivot;
+
 
             return [
                 'id' => $salat->id,
@@ -67,23 +75,21 @@ class HomeController extends Controller
             ];
         });
 
-        // return $salats;
 
         // Cache::forget('todays_ayat');
-            $todays_ayat = Cache::remember('todays_ayat', 86400, function () use ($numto) {
-                $response = Http::retry(3, 100)->withQueryParameters([
-                    'translations' => '163',
-                    'fields' => 'text_uthmani,chapter_id,hizb_number,text_imlaei_simple',
-                    'words' => 'false',
-                ])->get('https://api.quran.com/api/v4/verses/random')->json();
+        $todays_ayat = Cache::remember('todays_ayat', 86400, function () use ($numto) {
+            $response = Http::retry(3, 100)->withQueryParameters([
+                'translations' => '163',
+                'fields' => 'text_uthmani,chapter_id,hizb_number,text_imlaei_simple',
+                'words' => 'false',
+            ])->get('https://api.quran.com/api/v4/verses/random')->json();
 
-                return (object) [
-                    'verse' => $numto->bnNum($response['verse']['chapter_id']) . ':' . $numto->bnNum($response['verse']['verse_number']),
-                    'arabic_text' => $response['verse']['text_uthmani'],
-                    'bangla_text' => $response['verse']['translations'][0]['text'],
-                ];
-
-            });
+            return (object) [
+                'verse' => $numto->bnNum($response['verse']['chapter_id']) . ':' . $numto->bnNum($response['verse']['verse_number']),
+                'arabic_text' => $response['verse']['text_uthmani'],
+                'bangla_text' => $response['verse']['translations'][0]['text'],
+            ];
+        });
 
 
         return inertia('Ramadan', [

@@ -211,7 +211,6 @@
             </div>
         </div>
     </div>
-    <p>Current Route: {{ currentUrl }}</p>
 </template>
 
 <script lang="ts" setup>
