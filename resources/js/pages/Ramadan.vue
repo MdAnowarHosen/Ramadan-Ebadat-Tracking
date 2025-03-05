@@ -56,7 +56,16 @@
                             <tr>
                                 <th scope="col" class="px-2 py-5">ওয়াক্ত</th>
                                 <th scope="col" class="px-2 py-5">ফরজ</th>
-                                <th scope="col" class="px-2 py-5">সুন্নত</th>
+                                <th scope="col" class="px-2 py-5">
+                                    <TooltipProvider>
+                                        <Tooltip>
+                                        <TooltipTrigger>সুন্নত ও অন্যান্য</TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>সুন্নত + নফল + তারাবীহ + বিতর</p>
+                                        </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -210,6 +219,12 @@ import Swal from 'sweetalert2';
 import { ref } from 'vue';
 import moment from 'moment-hijri';
 import Checkbox from '@/components/ui/checkbox/Checkbox.vue';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
 
 const props = defineProps({
     date: String,

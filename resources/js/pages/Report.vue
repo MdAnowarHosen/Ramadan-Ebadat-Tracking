@@ -6,11 +6,11 @@
         <div class="grid gap-4 px-4 grid-cols md:grid-cols-3 ">
             <DashCard header="ফরজ স্বলাত" content="আদায় হয়েছে" :description="`${props.data?.salat?.today?.total_wakto || 0} ওয়াক্ত`" footer="আজ" />
             <DashCard header="ফরজ রাকাত" content="আদায় হয়েছে" :description="`${props.data?.salat?.today?.total_faraj_rakat || 0} রাকাত`" footer="আজ" />
-            <DashCard header="সুন্নাত রাকাত" content="আদায় হয়েছে" :description="`${props.data?.salat?.today?.total_sunnah_rakat || 0} রাকাত`" footer="আজ" />
+            <DashCard header="সুন্নত ও অন্যান্য" content="আদায় হয়েছে" :description="`${props.data?.salat?.today?.total_sunnah_rakat || 0} রাকাত`" footer="আজ" />
 
             <DashCard header="ফরজ স্বলাত" content="আদায় হয়েছে" :description="`${props.data?.salat?.last_week?.total_wakto || 0} ওয়াক্ত`" footer="এই সপ্তাহে" />
             <DashCard header="ফরজ রাকাত" content="আদায় হয়েছে" :description="`${props.data?.salat?.last_week?.total_faraj_rakat || 0} রাকাত`" footer="এই সপ্তাহে" />
-            <DashCard header="সুন্নাত রাকাত" content="আদায় হয়েছে" :description="`${props.data?.salat?.last_week?.total_sunnah_rakat || 0} রাকাত`" footer="এই সপ্তাহে" />
+            <DashCard header="সুন্নত ও অন্যান্য" content="আদায় হয়েছে" :description="`${props.data?.salat?.last_week?.total_sunnah_rakat || 0} রাকাত`" footer="এই সপ্তাহে" />
         </div>
     </div>
         <!-- quran report -->
