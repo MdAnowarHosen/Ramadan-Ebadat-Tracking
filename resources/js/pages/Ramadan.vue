@@ -211,8 +211,6 @@ import { ref } from 'vue';
 import moment from 'moment-hijri';
 import Checkbox from '@/components/ui/checkbox/Checkbox.vue';
 
-const currentUrl = ref(window.location.href);
-
 const props = defineProps({
     date: String,
     hijri_date_adjust: String,
