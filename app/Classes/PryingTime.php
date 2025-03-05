@@ -3,7 +3,6 @@
 namespace App\Classes;
 
 use Illuminate\Support\Carbon;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use Rakibhstu\Banglanumber\NumberToBangla;
 
@@ -19,8 +18,10 @@ class PryingTime
      * @date string
      * it should be in the format DD-MM-YYYY
      */
-    public static function get(string $latitude, string $longitude, string $date): array
+    public static function get(string $latitude, string $longitude, ?string $date = null): array
     {
+        $date = $date ?? now()->format('Y-m-d');
+
         return Http::retry(3, 100)->withQueryParameters([
             'latitude' => $latitude,
             'longitude' => $longitude,
@@ -30,10 +31,10 @@ class PryingTime
         ])->get('https://api.aladhan.com/v1/timings/' . $date)->json();
     }
 
-    public static function getTiming(array $data): object
+    public static function getTiming(array $data = []): object
     {
         $numto = new NumberToBangla();
-        $timing = collect($data['data']['timings']);
+        $timing = collect($data['data']['timings']) ?? [];
 
         // Convert each time to 12-hour format
         return $timing->each(function ($time, $key) use ($timing, $numto) {
