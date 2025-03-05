@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\PryingTime;
 use App\Models\QuranTrack;
 use App\Models\Task;
 use App\Models\Salat;
@@ -20,7 +21,8 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
 
-
+       $data = PryingTime::get('23.800000', '90.200000', now()->format('Y-m-d'));
+     return  $timing = PryingTime::getTiming($data);
 
         $date = $request->date ?? now()->format('Y-m-d');
 
