@@ -25,7 +25,7 @@ class SalatStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:50|unique:salats,name,' . $salat,
             'faraj_rakat' => 'required|numeric|min:0',
-            // 'position' => 'required|numeric|min:1'
+            'position' => 'required|numeric|min:1'
         ];
     }
 }

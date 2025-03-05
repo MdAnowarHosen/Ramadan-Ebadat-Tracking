@@ -17,7 +17,8 @@ class AdminSalatController extends Controller
 
     public function create()
     {
-        return inertia('Admin/Salat/SalatCreate');
+        $last_position = Salat::max('position');
+        return inertia('Admin/Salat/SalatCreate', ['last_position' => $last_position]);
     }
 
     public function store(SalatStoreRequest $request)
@@ -26,6 +27,7 @@ class AdminSalatController extends Controller
         Salat::create([
             'name' => $validatedData['name'],
             'faraj_rakat' => $validatedData['faraj_rakat'],
+            'position' => $validatedData['position'],
         ]);
     }
 
@@ -39,6 +41,7 @@ class AdminSalatController extends Controller
         $validatedData = $request->validated();
         $salat->name = $validatedData['name'];
         $salat->faraj_rakat = $validatedData['faraj_rakat'];
+        $salat->position = $validatedData['position'];
         $salat->update();
     }
 

@@ -72,6 +72,7 @@ function remove(id) {
             <TableCaption>সকল স্বলাত।</TableCaption>
             <TableHeader>
                 <TableRow>
+                    <TableHead>অবস্থান</TableHead>
                     <TableHead class="w-[100px]"> নাম </TableHead>
                     <TableHead>ফরজ রাকাত</TableHead>
                     <TableHead>একশন</TableHead>
@@ -79,6 +80,7 @@ function remove(id) {
             </TableHeader>
             <TableBody>
                 <TableRow v-for="row in data" :key="row.id">
+                    <TableCell>{{ row.position }}</TableCell>
                     <TableCell class="font-medium">
                         {{ row.name }}
                     </TableCell>

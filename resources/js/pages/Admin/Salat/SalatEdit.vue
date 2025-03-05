@@ -22,12 +22,14 @@ const props = defineProps<{
         id?: number,
         name?: string;
         faraj_rakat?: number;
+        position?: number;
     };
 }>();
 
 const form = useForm({
     name: props.data?.name || '',
     faraj_rakat: props.data?.faraj_rakat || 0,
+    position: props.data?.position || 0,
 });
 
 function submit() {
@@ -62,7 +64,7 @@ function submit() {
         <CardContent title="স্বলাত সম্পাদন করুন" header="স্বলাত সম্পাদন করতে নিম্নের তথ্য গুলো প্রবেশ করুন" class="mt-5">
             <form @submit.prevent="submit">
                 <div class="grid grid-cols-1 gap-4 mx-5 mt-5 md:grid-cols-2">
-                    <div class="">
+                    <div>
                         <Label for="name">স্বলাতের ওয়াক্তের নাম</Label>
                         <Input
                             id="name"
@@ -77,7 +79,7 @@ function submit() {
                         <InputError :message="form.errors.name" />
                     </div>
 
-                    <div class="">
+                    <div>
                         <Label for="name">ফরজ রাকাত সংখ্যা</Label>
                         <Input
                             id="faraj_rakat"
@@ -90,6 +92,20 @@ function submit() {
                             placeholder="স্বলাতের ওয়াক্তের নাম"
                         />
                         <InputError :message="form.errors.faraj_rakat" />
+                    </div>
+                    <div>
+                        <Label for="name">অবস্থান</Label>
+                        <Input
+                            id="faraj_rakat"
+                            type="number"
+                            required
+                            autofocus
+                            :tabindex="1"
+                            autocomplete="position"
+                            v-model.number="form.position"
+                            placeholder="অবস্থান"
+                        />
+                        <InputError :message="form.errors.position" />
                     </div>
                 </div>
 
