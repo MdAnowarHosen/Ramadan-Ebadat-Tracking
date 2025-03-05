@@ -67,12 +67,7 @@
                             >
                                 <td class="py-8">{{ salat.name }}</td>
                                 <td class="py-8">
-                                    <input
-                                        :checked="salat.owned === true"
-                                        @click="salatAction(salat.id)"
-                                        type="checkbox"
-                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-600 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
-                                        />
+                                    <Checkbox   :model-value="salat.owned"   @click="salatAction(salat.id)"/>
                                 </td>
                                 <td class="py-8">
                                     <input
@@ -80,7 +75,7 @@
                                         @change="sunnahAction(salat.id, salat.sunnah_rakat)"
                                         type="number"
                                         min="0"
-                                        class="h-5 bg-white border border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600"
+                                        class="h-5 text-amber-600  dark:text-gray-400 focus:ring-2 focus:ring-amber-500 dark:focus:ring-gray-800 bg-white border text-center border-gray-300 rounded w-14 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                             </tr>
@@ -110,7 +105,7 @@
                                         @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="h-8 bg-white border border-gray-300 rounded w-18 text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
+                                        class="h-8 text-center bg-white border border-gray-300 rounded w-18 text-amber-600 dark:text-gray-400 focus:ring-2 focus:ring-amber-500 dark:focus:ring-gray-800 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                                 <td class="py-8">
@@ -119,7 +114,7 @@
                                         @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="h-8 bg-white border border-gray-300 rounded w-18 text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
+                                        class="h-8 text-center bg-white border border-gray-300 rounded w-18 text-amber-600 dark:text-gray-400 focus:ring-2 focus:ring-amber-500 dark:focus:ring-gray-800 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                                 <td class="py-8">
@@ -128,7 +123,7 @@
                                         @change="quranAction()"
                                         type="number"
                                         min="0"
-                                        class="h-8 bg-white border border-gray-300 rounded w-18 text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-600"
+                                        class="h-8 text-center bg-white border border-gray-300 rounded w-18 text-amber-600 dark:text-gray-400 focus:ring-2 focus:ring-amber-500 dark:focus:ring-gray-800 dark:border-gray-600 dark:bg-gray-600"
                                     />
                                 </td>
                             </tr>
@@ -193,12 +188,7 @@
                                     class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                                 >
                                     <td class="py-2">
-                                        <input
-                                            :checked="task.owned === true"
-                                            @click="doAction(task.id)"
-                                        class="w-4 h-4 bg-white border-gray-300 rounded-sm text-amber-600 focus:ring-2 focus:ring-amber-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-600 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
-                                            type="checkbox"
-                                        />
+                                        <Checkbox   :model-value="task.owned"  @click="doAction(task.id)"/>
                                     </td>
                                     <td class="py-2 text-sm">
                                         <span>{{ task.name }}</span>
@@ -219,6 +209,7 @@ import { Head, router } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
 import { ref } from 'vue';
 import moment from 'moment-hijri';
+import Checkbox from '@/components/ui/checkbox/Checkbox.vue';
 
 const currentUrl = ref(window.location.href);
 
