@@ -11,7 +11,7 @@ class AdminSalatController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Salat::all();
+        $data = Salat::orderBy('position')->get();
         return inertia('Admin/Salat/Salat', ['data' => $data]);
     }
 
