@@ -435,13 +435,13 @@ function quranAction() {
 function refetchLocation() {
     router.visit('/', {
         only: ['prying_time'],
-        data: { praying_time_refatch: 'true' },
+        data: { praying_time_refetch: 'true' },
         onSuccess: () => {
             // console.log('Reloaded successfully!');
             showSuccessToast('লোকেশন পুনরায় সেট করা হয়েছে', true);
-            // Remove `praying_time_refatch` from URL
+            // Remove `praying_time_refetch` from URL
             const url = new URL(window.location);
-            url.searchParams.delete('praying_time_refatch');
+            url.searchParams.delete('praying_time_refetch');
 
             // Update URL without reloading the page
             window.history.replaceState({}, '', url);
