@@ -22,8 +22,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
 
-     return $location = Location::get();
-      $data = PryingTime::get('24.368150998074952', '88.60129668385959', now()->format('Y-m-d'));
+
 
 
         $date = $request->date ?? now()->format('Y-m-d');
@@ -39,6 +38,9 @@ class HomeController extends Controller
 
         // subtract 1 day for hijri date
         $forHijriDateAdjust = Carbon::parse($date)->subDay()->format('Y-m-d');
+
+        $prying_time = PryingTime::get();
+        // dd($prying_time);
 
         $tasks = Task::withExists(['users as owned' => function ($query) use ($date) {
             $query->where('user_id', Auth::id())
@@ -66,6 +68,7 @@ class HomeController extends Controller
             $userPivot = $salat->users->first()?->pivot;
 
 
+
             return [
                 'id' => $salat->id,
                 'name' => $salat->name,
@@ -75,7 +78,7 @@ class HomeController extends Controller
                 'owned' => $userPivot !== null, // Checks if the user has an entry
                 'sunnah_rakat' => $userPivot?->sunnah_rakat,
                 'pivot_created_at' => $userPivot?->created_at,
-                'pivot_updated_at' => $userPivot?->updated_at
+                'pivot_updated_at' => $userPivot?->updated_at,
             ];
         });
 
@@ -107,6 +110,7 @@ class HomeController extends Controller
             ],
             'tasks' => $tasks,
             'todays_ayat' => $todays_ayat,
+            'prying_time' => $prying_time,
         ]);
     }
 }

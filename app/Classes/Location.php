@@ -16,11 +16,12 @@ class Location
         //
     }
 
-    public static function get()
+    public static function get(): array
     {
-        $cacheKey = "prayer_times_" . (Auth::check() ? Auth::id() : session()->getId());
+        $cacheKey = "prayer_location_" . (Auth::check() ? Auth::id() : session()->getId());
         $cacheDuration = Auth::check() ? now()->addYears(1) : now()->addHours(6);
-        // Cache::forget($cacheKey);
+        Cache::forget($cacheKey);
+
         return Cache::remember($cacheKey, $cacheDuration, function () {
             return Http::retry(3, 100)
                 ->withQueryParameters([])

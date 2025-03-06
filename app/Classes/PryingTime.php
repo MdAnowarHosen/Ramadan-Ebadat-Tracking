@@ -2,11 +2,12 @@
 
 namespace App\Classes;
 
+use App\Classes\Location;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Http;
-use Rakibhstu\Banglanumber\NumberToBangla;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use Rakibhstu\Banglanumber\NumberToBangla;
 
 class PryingTime
 {
@@ -20,9 +21,16 @@ class PryingTime
      * @date string
      * it should be in the format DD-MM-YYYY
      */
-    public static function get(string $latitude, string $longitude, ?string $date = null): object
+    public static function get(?string $latitude = null, ?string $longitude = null, ?string $date = null): object
     {
         $cacheKey = "prayer_times_" . (Auth::check() ? Auth::id() : request()->ip());
+        // Cache::forget($cacheKey);
+
+        // get location
+        $location = Location::get();
+        $latitude = $latitude ?? $location['latitude'];
+        $longitude = $longitude ?? $location['longitude'];
+
         return Cache::remember($cacheKey, now()->addHours(1), function () use ($latitude, $longitude, $date) {
             $date = $date ?? now()->format('Y-m-d');
 

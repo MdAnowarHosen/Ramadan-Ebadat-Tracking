@@ -19,32 +19,115 @@
         <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
             <!-- Ayat of the Day -->
             <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
+              <div>
                 <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের আয়াত</h2>
                 <p class="mt-2 text-right text-gray-600 dark:text-gray-400">
                     {{ props.todays_ayat.arabic_text }}<br />
                     ({{ props.todays_ayat.verse }})
                 </p>
                 <p class="mt-2 text-gray-600 dark:text-gray-400">{{ props.todays_ayat.bangla_text }}</p>
+              </div>
+                <div class="mt-20">
+                    <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের হাদিস</h2>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">
+                        যে ব্যক্তি ঈমানের সাথে পূর্বেকার গুনাহের জন্য রমাদানের রোজা রাখবে, তার পূর্বেকার সমস্ত গুনাহ মাফ করে দেয়া হবে।
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-400">(সহিহ বুখারি, হাদিস: ৩৮)</p>
+                </div>
             </div>
-
-            <!-- Hadith of the Day -->
-            <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
-                <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের হাদিস</h2>
-                <p class="mt-2 text-gray-600 dark:text-gray-400">
-                    যে ব্যক্তি ঈমানের সাথে পূর্বেকার গুনাহের জন্য রমাদানের রোজা রাখবে, তার পূর্বেকার সমস্ত গুনাহ মাফ করে দেয়া হবে।
-                </p>
-                <p class="text-gray-600 dark:text-gray-400">(সহিহ বুখারি, হাদিস: ৩৮)</p>
+            <!-- prying time -->
+            <div>
+                <div class="p-4 rounded-lg bg-amber-100 dark:bg-gray-800">
+                <!-- <h2 class="mb-3 text-sm font-bold text-gray-600 dark:text-gray-400">স্বলাতের সময়</h2> -->
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rtl:text-right">
+                        <thead class="text-xs text-center text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <!-- <th scope="col" class="px-2 py-5">ওয়াক্ত</th> -->
+                                <th scope="col" colspan="2" class="px-2 py-5">সময়</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <Sunrise  class="mr-4 w-5"/> <span class="mt-1">ফজর</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Fajr }}</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <Sunrise  class="mr-4 w-5"/> <span class="mt-1">সূর্যদয়</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Sunrise }}</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <Sun  class="mr-4 w-5"/> <span class="mt-1">যোহর</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Dhuhr }}</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <SunDim  class="mr-4 w-5"/> <span class="mt-1">আসর</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Asr }}</td>
+                            </tr>
+                            <!-- <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <Sunset  class="mr-4 w-5"/> <span class="mt-1">সূর্যাস্ত</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Sunset }}</td>
+                            </tr> -->
+                            <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <Sunset  class="mr-4 w-5"/> <span class="mt-1">মাগরিব</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Maghrib }}</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <Moon  class="mr-4 w-5"/> <span class="mt-1">ইশা</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Isha }}</td>
+                            </tr>
+                            <!-- <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">রাত্রি ১ম প্রহর</td>
+                                <td class="py-3">{{ prying_time.Firstthird }}</td>
+                            </tr> -->
+                            <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">
+                                    <div class="flex justify-start ml-6">
+                                        <MoonStar  class="mr-4 w-5"/> <span class="mt-1">মধ্যরাত</span>
+                                    </div>
+                                </td>
+                                <td class="py-3">{{ prying_time.Midnight }}</td>
+                            </tr>
+                            <!-- <tr class="border-b border-gray-200 odd:bg-amber-100 even:bg-yellow-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                                <td class="py-3">রাত্রি ৩য় প্রহর</td>
+                                <td class="py-3">{{ prying_time.Lastthird }}</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             </div>
         </div>
 
-        <!-- Du'a Section -->
-        <div class="p-4 mt-4 rounded-lg bg-amber-100 dark:bg-gray-800">
-            <h2 class="text-lg font-bold text-center text-gray-600 dark:text-gray-400">দিনের দোয়া</h2>
-            <p class="mt-2 text-center text-gray-600 dark:text-gray-400">
-                رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ
-            </p>
-            <p class="text-center text-gray-600 dark:text-gray-400">(সূরা বাকারা: ২০১)</p>
-        </div>
+
 
         <!-- Checklist & Tasks -->
         <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
@@ -159,11 +242,11 @@
                     </table>
                 </div>
 
-                <div class="relative mt-4 overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="relative mt-8 overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rtl:text-right">
                         <thead class="text-xs text-center text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-2 py-3 text-lg font-bold">দিনের কাজ</th>
+                                <th scope="col" class="px-2 py-3 text-lg font-bold">দিনের দোয়া</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -171,7 +254,8 @@
                                 class="border-b border-gray-200 odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
                             >
                                 <td class="py-2 font-medium bg-amber-100 dark:bg-gray-900" style="line-height: 20px">
-                                    <p class="">সাফল্য অর্জনের জন্যে সূরা আল-মূমিনূনের প্রথম ১৫ টি আয়াত অর্থ সহ পড়ুন।</p>
+                                    <p class="">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</p>
+                                    <p>(সূরা বাকারা: ২০১)</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -226,6 +310,15 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 
+import {
+    Sunrise,
+    Sun,
+    SunDim,
+    Sunset,
+    Moon,
+    MoonStar,
+  } from 'lucide-vue-next';
+
 const props = defineProps({
     date: String,
     hijri_date_adjust: String,
@@ -233,6 +326,7 @@ const props = defineProps({
     quran_data: Object,
     tasks: Object,
     todays_ayat: Object,
+    prying_time: Object,
 });
 
 const date = ref(props.date);
