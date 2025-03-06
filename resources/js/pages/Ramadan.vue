@@ -21,7 +21,7 @@
         <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
             <!-- Ayat of the Day -->
             <div class="rounded-lg bg-amber-100 p-4 dark:bg-gray-800">
-                <div>
+                <div class="rounded border p-3 shadow-sm">
                     <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের আয়াত</h2>
                     <p class="mt-2 text-right text-gray-600 dark:text-gray-400">
                         {{ props.todays_ayat.arabic_text }}<br />
@@ -29,7 +29,7 @@
                     </p>
                     <p class="mt-2 text-gray-600 dark:text-gray-400">{{ props.todays_ayat.bangla_text }}</p>
                 </div>
-                <div class="mt-20">
+                <div class="mt-14 rounded border p-3 shadow-sm">
                     <h2 class="text-lg font-bold text-gray-600 dark:text-gray-400">দিনের হাদিস</h2>
                     <p class="mt-2 text-gray-600 dark:text-gray-400">
                         যে ব্যক্তি ঈমানের সাথে পূর্বেকার গুনাহের জন্য রমাদানের রোজা রাখবে, তার পূর্বেকার সমস্ত গুনাহ মাফ করে দেয়া হবে।
@@ -42,25 +42,25 @@
                 <div class="rounded-lg bg-amber-100 p-4 dark:bg-gray-800">
                     <!-- <h2 class="mb-3 text-sm font-bold text-gray-600 dark:text-gray-400">স্বলাতের সময়</h2> -->
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                       <div class=" float-end ">
-                        <div class="ml-5 flex">
-                            <div class="mr-2">
-                                {{ prying_time.place }}
-                            </div>
-                            <div class="mx-2">
-                                <div class="">
+                        <div class="float-end">
+                            <div class="ml-5 flex">
+                                <div class="mr-2">
+                                    {{ prying_time.place }}
+                                </div>
+                                <div class="mx-2">
+                                    <div class="">
                                         <TooltipProvider>
-                                        <Tooltip>
-                                        <TooltipTrigger><Locate @click="refetchLocation()" class="w-4" /></TooltipTrigger>
-                                        <TooltipContent>
-                                            <p>লোকেশন সেট করুন</p>
-                                        </TooltipContent>
-                                        </Tooltip>
-                                    </TooltipProvider>
+                                            <Tooltip>
+                                                <TooltipTrigger><Locate @click="refetchLocation()" class="w-4" /></TooltipTrigger>
+                                                <TooltipContent>
+                                                    <p>লোকেশন সেট করুন</p>
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </TooltipProvider>
                                     </div>
+                                </div>
                             </div>
                         </div>
-                       </div>
                         <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400 rtl:text-right">
                             <thead class="bg-amber-200 text-center text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -324,11 +324,10 @@
 import Checkbox from '@/components/ui/checkbox/Checkbox.vue';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Head, router } from '@inertiajs/vue3';
+import { Locate, Moon, MoonStar, Sun, SunDim, Sunrise, Sunset } from 'lucide-vue-next';
 import moment from 'moment-hijri';
 import Swal from 'sweetalert2';
 import { ref } from 'vue';
-
-import { Moon, MoonStar, Sun, SunDim, Sunrise, Sunset, Locate } from 'lucide-vue-next';
 
 const props = defineProps({
     date: String,
@@ -343,6 +342,7 @@ const props = defineProps({
 const date = ref(props.date);
 const hijri_date_adjust = ref(props.hijri_date_adjust);
 const quran = ref(props.quran_data);
+
 
 function getDateData() {
     router.get(
@@ -432,23 +432,21 @@ function quranAction() {
     );
 }
 
-function refetchLocation()
-{
+function refetchLocation() {
     router.visit('/', {
-    only: ['prying_time'],
-    data: { praying_time_refatch: 'true' },
-    onSuccess: () => {
-        // console.log('Reloaded successfully!');
-        showSuccessToast('লোকেশন পুনরায় সেট করা হয়েছে', true);
-        // Remove `praying_time_refatch` from URL
-        const url = new URL(window.location);
-        url.searchParams.delete('praying_time_refatch');
+        only: ['prying_time'],
+        data: { praying_time_refatch: 'true' },
+        onSuccess: () => {
+            // console.log('Reloaded successfully!');
+            showSuccessToast('লোকেশন পুনরায় সেট করা হয়েছে', true);
+            // Remove `praying_time_refatch` from URL
+            const url = new URL(window.location);
+            url.searchParams.delete('praying_time_refatch');
 
-        // Update URL without reloading the page
-        window.history.replaceState({}, '', url);
-    }
-});
-
+            // Update URL without reloading the page
+            window.history.replaceState({}, '', url);
+        },
+    });
 }
 
 function showError(errors) {
@@ -464,7 +462,7 @@ function showSuccessToast(message) {
         toast: true,
         position: 'top-end',
         title: 'Success',
-        text: message ??  'Success',
+        text: message ?? 'Success',
         icon: 'success',
         showConfirmButton: false,
         timer: 3000,
