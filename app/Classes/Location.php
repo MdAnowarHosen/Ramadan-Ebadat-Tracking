@@ -34,7 +34,7 @@ class Location
                 return (object) [
                     'latitude' => $data['latitude'],
                     'longitude' => $data['longitude'],
-                    'place' => $data['city']. ', '. $data['state_prov']. ', '. $data['country_name'],
+                    'place' => $data['city']. ', '. $data['country_name'],
                 ];
         });
     }

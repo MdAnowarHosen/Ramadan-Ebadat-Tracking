@@ -51,7 +51,7 @@
                                 <div class="">
                                         <TooltipProvider>
                                         <Tooltip>
-                                        <TooltipTrigger><Locate class="w-4" /></TooltipTrigger>
+                                        <TooltipTrigger><Locate @click="refetchLocation()" class="w-4" /></TooltipTrigger>
                                         <TooltipContent>
                                             <p>লোকেশন সেট করুন</p>
                                         </TooltipContent>
@@ -432,11 +432,43 @@ function quranAction() {
     );
 }
 
+function refetchLocation()
+{
+    router.visit('/', {
+    only: ['prying_time'],
+    data: { praying_time_refatch: 'true' },
+    onSuccess: () => {
+        // console.log('Reloaded successfully!');
+        showSuccessToast('লোকেশন পুনরায় স্থাপন করা হয়েছে', true);
+        // Remove `praying_time_refatch` from URL
+        const url = new URL(window.location);
+        url.searchParams.delete('praying_time_refatch');
+
+        // Update URL without reloading the page
+        window.history.replaceState({}, '', url);
+    }
+});
+
+}
+
 function showError(errors) {
     Swal.fire({
         title: 'Error!',
         text: errors ? (Array.isArray(errors) ? errors[0] : Object.values(errors).join(', ')) : 'An error occurred',
         icon: 'error',
+    });
+}
+
+function showSuccessToast(message) {
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        title: 'Success',
+        text: message ??  'Success',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
     });
 }
 

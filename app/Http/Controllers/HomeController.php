@@ -39,6 +39,17 @@ class HomeController extends Controller
         // subtract 1 day for hijri date
         $forHijriDateAdjust = Carbon::parse($date)->subDay()->format('Y-m-d');
 
+        if (isset($request->praying_time_refatch) && $request->praying_time_refatch == 'true') {
+            // dd('refetch');
+            // forget prayer location cache
+            $cacheKey = "prayer_location_" . (Auth::check() ? Auth::id() : session()->getId());
+            Cache::forget($cacheKey);
+
+            // forget prayer time cache
+            $cacheKey = "prayer_times_" . (Auth::check() ? Auth::id() : request()->ip());
+            Cache::forget($cacheKey);
+        }
+
         $prying_time = PryingTime::get();
         // dd($prying_time);
 
