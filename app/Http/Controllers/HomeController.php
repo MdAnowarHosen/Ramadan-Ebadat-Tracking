@@ -21,8 +21,8 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
 
-       $data = PryingTime::get('24.368150998074952', '88.60129668385959', now()->format('Y-m-d'));
-     return  $timing = PryingTime::getTiming($data);
+     return  $data = PryingTime::get('24.368150998074952', '88.60129668385959', now()->format('Y-m-d'));
+
 
         $date = $request->date ?? now()->format('Y-m-d');
 
