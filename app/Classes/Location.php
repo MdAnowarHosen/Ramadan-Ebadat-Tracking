@@ -22,6 +22,7 @@ class Location
         $cacheKey = "prayer_location_" . (Auth::check() ? Auth::id() : session()->getId());
         $cacheDuration = Auth::check() ? now()->addYears(1) : now()->addHours(6);
         // Cache::forget($cacheKey);
+
         return Cache::remember($cacheKey, $cacheDuration, function () {
             $data = Http::retry(3, 100)
                 ->withQueryParameters([
@@ -29,10 +30,11 @@ class Location
                 ])
                 ->get('https://api.ipgeolocation.io/ipgeo')
                 ->json();
+                // dd($data);
                 return (object) [
                     'latitude' => $data['latitude'],
                     'longitude' => $data['longitude'],
-                    'place' => $data['city'],
+                    'place' => $data['city']. ', '. $data['state_prov']. ', '. $data['country_name'],
                 ];
         });
     }

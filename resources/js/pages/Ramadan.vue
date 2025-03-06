@@ -45,7 +45,7 @@
                        <div class=" float-end ">
                         <div class="ml-5 flex">
                             <div class="mr-2">
-                                রাজশাহী, বাংলাদেশ
+                                {{ prying_time.place }}
                             </div>
                             <div class="mx-2">
                                 <div class="">
