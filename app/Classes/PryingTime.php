@@ -28,10 +28,11 @@ class PryingTime
 
         // get location
         $location = Location::get();
-        $latitude = $latitude ?? $location['latitude'];
-        $longitude = $longitude ?? $location['longitude'];
+        $latitude = $latitude ?? $location->latitude;
+        $longitude = $longitude ?? $location->longitude;
+        $place = $location->place;
 
-        return Cache::remember($cacheKey, now()->addHours(1), function () use ($latitude, $longitude, $date) {
+        return Cache::remember($cacheKey, now()->addHours(1), function () use ($latitude, $longitude, $date, $place) {
             $date = $date ?? now()->format('Y-m-d');
 
             $response = Http::retry(3, 100)->withQueryParameters([
@@ -47,10 +48,15 @@ class PryingTime
             $timing = collect($response['data']['timings']) ?? [];
 
             // Convert each time to 12-hour format
-            return $timing->each(function ($time, $key) use ($timing, $numto) {
+            $data = $timing->each(function ($time, $key) use ($timing, $place, $numto) {
                 $time = Carbon::parse($time);
                 $timing[$key] = $numto->bnNum($time->format('g')) . ':' . $numto->bnNum($time->format('i'));
             });
+
+            // add place in data
+            $data['place'] = $place;
+
+            return $data;
         });
     }
 }
