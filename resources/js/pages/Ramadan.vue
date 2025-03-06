@@ -439,7 +439,7 @@ function refetchLocation()
     data: { praying_time_refatch: 'true' },
     onSuccess: () => {
         // console.log('Reloaded successfully!');
-        showSuccessToast('লোকেশন পুনরায় স্থাপন করা হয়েছে', true);
+        showSuccessToast('লোকেশন পুনরায় সেট করা হয়েছে', true);
         // Remove `praying_time_refatch` from URL
         const url = new URL(window.location);
         url.searchParams.delete('praying_time_refatch');
