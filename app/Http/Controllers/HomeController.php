@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\PryingTime;
-use App\Models\QuranTrack;
 use App\Models\Task;
 use App\Models\Salat;
+use App\Classes\Location;
+use App\Models\QuranTrack;
+use App\Classes\PryingTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,8 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
 
-     return  $data = PryingTime::get('24.368150998074952', '88.60129668385959', now()->format('Y-m-d'));
+     return $location = Location::get();
+      $data = PryingTime::get('24.368150998074952', '88.60129668385959', now()->format('Y-m-d'));
 
 
         $date = $request->date ?? now()->format('Y-m-d');

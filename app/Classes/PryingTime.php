@@ -22,7 +22,7 @@ class PryingTime
      */
     public static function get(string $latitude, string $longitude, ?string $date = null): object
     {
-        $cacheKey = "prayer_times_{Auth::user()->id}";
+        $cacheKey = "prayer_times_" . (Auth::check() ? Auth::id() : request()->ip());
         return Cache::remember($cacheKey, now()->addHours(1), function () use ($latitude, $longitude, $date) {
             $date = $date ?? now()->format('Y-m-d');
 
