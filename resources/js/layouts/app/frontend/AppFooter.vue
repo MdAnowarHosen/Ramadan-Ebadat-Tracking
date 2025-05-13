@@ -47,7 +47,7 @@
             <hr class="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
                 <span class="text-sm text-gray-500 dark:text-gray-400 sm:text-center"
-                    >© {{ new Date().getFullYear() }} <a href="https://hamkoict.com.bd" class="hover:underline">HAMKO ICT</a>. All Rights Reserved.
+                    >© {{ new Date().getFullYear() }} <a href="#" class="hover:underline"></a>. All Rights Reserved.
                 </span>
                 <div class="flex mt-4 sm:mt-0 sm:justify-center">
                     <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
